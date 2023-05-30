@@ -1,0 +1,13 @@
+package com.codecool.elproyectegrandesprint.javatomatams;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ElProyecteGrandeSprint1JavaTomatamsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ElProyecteGrandeSprint1JavaTomatamsApplication.class, args);
+	}
+
+}
