@@ -1,3 +1,5 @@
 package com.codecool.elproyectegrandesprint.javatomatams.model;
 
-public record RecipeDTO(String name, String preparation) {}
+import java.util.UUID;
+
+public record RecipeDTO(UUID id, String name, String preparation) {}
