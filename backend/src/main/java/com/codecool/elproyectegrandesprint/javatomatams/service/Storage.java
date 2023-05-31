@@ -21,7 +21,7 @@ public class Storage {
     }
     public RecipeDTO getRecipeByID(UUID id) {
         return recipes.stream()
-                .filter(recipeDTO -> recipeDTO.id().equals(id))
+                .filter(recipeDTO -> recipeDTO.isThisID(id))
                 .findFirst()
                 .orElseThrow(NoSuchElementException::new);
     }
