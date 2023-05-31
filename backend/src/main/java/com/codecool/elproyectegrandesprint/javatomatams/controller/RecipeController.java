@@ -24,16 +24,20 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
     @PostMapping(value = "add")
-    public RecipeDTO postRecipes(@RequestParam String title, String preparation) throws InvalidRecipeTitleException {
-        return recipeService.addRecipe(title, preparation);
+    public ResponseEntity<RecipeDTO> postRecipes(@RequestParam String title, String preparation){
+        try {
+            return ResponseEntity.ok(recipeService.addRecipe(title, preparation));
+        } catch (InvalidRecipeTitleException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleMissing() {
         return ResponseEntity.notFound().build();
     }
-    @GetMapping(value = "id")
-    public ResponseEntity<RecipeDTO> getRecipeByID(@PathVariable UUID id) {
+    @GetMapping(value = "{id}")
+    public ResponseEntity<RecipeDTO> getRecipeByID(@PathVariable("id") UUID id) {
         try {
             return ResponseEntity.ok(recipeService.getRecipeByID(id));
         } catch (NoSuchElementException e) {
