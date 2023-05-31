@@ -2,6 +2,7 @@ package com.codecool.elproyectegrandesprint.javatomatams.controller;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.RecipeService;
+import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeNameException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
     @PostMapping(value = "add")
-    public RecipeDTO postRecipes(@RequestParam String name, String preparation){
+    public RecipeDTO postRecipes(@RequestParam String name, String preparation) throws InvalidRecipeNameException {
         return recipeService.addRecipe(name, preparation);
     }
     @GetMapping(value = "id")
