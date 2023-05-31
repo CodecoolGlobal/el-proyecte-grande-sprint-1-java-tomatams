@@ -1,6 +1,7 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeNameException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,13 +24,13 @@ public class RecipeService {
         return storage.getRecipeByID(id);
     }
 
-    public RecipeDTO addRecipe(String name, String preparation) {
+    public RecipeDTO addRecipe(String name, String preparation) throws InvalidRecipeNameException {
         if (isValidName(name)){
             RecipeDTO newRecipe = new RecipeDTO(name, preparation, LocalDateTime.now());
             storage.addRecipe(newRecipe);
             return newRecipe;
         } else {
-            return null;
+            throw new InvalidRecipeNameException("Can't add this recipe, because not valid name:" + name);
         }
     }
 
