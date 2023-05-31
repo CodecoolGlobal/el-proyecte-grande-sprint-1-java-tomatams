@@ -16,6 +16,22 @@ public class RecipeDTO {
         this.creationDate = creationDate;
     }
 
+    public UUID getID() {
+        return ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPreparation() {
+        return preparation;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
     public boolean isThisID(UUID id){
         return ID.equals(id);
     }
