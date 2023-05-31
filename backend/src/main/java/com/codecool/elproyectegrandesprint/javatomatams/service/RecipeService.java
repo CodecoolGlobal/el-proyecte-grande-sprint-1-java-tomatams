@@ -1,5 +1,6 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service;
 
+import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import org.springframework.stereotype.Service;
@@ -24,23 +25,9 @@ public class RecipeService {
         return storage.getRecipeByID(id);
     }
 
-    public RecipeDTO addRecipe(String title, String preparation) throws InvalidRecipeTitleException {
-        if (isValidName(title)){
-            RecipeDTO newRecipe = new RecipeDTO(title, preparation, LocalDateTime.now());
+    public RecipeDTO addRecipe(NewRecipeDTO newRecipeDTO) throws InvalidRecipeTitleException {
+            RecipeDTO newRecipe = new RecipeDTO(newRecipeDTO.title(), newRecipeDTO.preparation(), LocalDateTime.now());
             storage.addRecipe(newRecipe);
             return newRecipe;
-        } else {
-            throw new InvalidRecipeTitleException("Can't add this recipe, because not valid title:" + title);
-        }
-    }
-
-    private boolean isValidName(String title) {
-        for (int i = 0; i < title.length(); i++) {
-            char c = title.charAt(i);
-            if (!Character.isLetter(c) && c != ' ') {
-                return false;
-            }
-        }
-        return true;
     }
 }
