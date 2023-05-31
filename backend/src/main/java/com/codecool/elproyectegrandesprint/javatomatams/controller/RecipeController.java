@@ -20,8 +20,7 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
     @PostMapping(value = "add")
-    public void postRecipes(@RequestParam String name, String preparation){
-        RecipeDTO newRecipe = new RecipeDTO(name, preparation);
-        recipeService.addRecipe(newRecipe);
+    public RecipeDTO postRecipes(@RequestParam String name, String preparation){
+        return recipeService.addRecipe(name, preparation);
     }
 }
