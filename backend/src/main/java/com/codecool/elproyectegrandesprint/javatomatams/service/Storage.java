@@ -14,7 +14,7 @@ public class Storage {
         recipes.add(newRecipe);
     }
 
-    public List<RecipeDTO> getRecipes() {
+    public List<RecipeDTO> getAllRecipes() {
         return recipes;
     }
 }
