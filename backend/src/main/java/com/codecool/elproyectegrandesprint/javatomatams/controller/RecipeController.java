@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/recipes")
 public class RecipeController {
-
     private final Storage storage;
 
     public RecipeController(Storage storage) {
