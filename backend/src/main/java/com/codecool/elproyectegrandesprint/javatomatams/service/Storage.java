@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @Component
 public class Storage {
@@ -16,5 +18,11 @@ public class Storage {
 
     public List<RecipeDTO> getRecipes() {
         return recipes;
+    }
+    public RecipeDTO getRecipeByID(UUID id) {
+        return recipes.stream()
+                .filter(recipeDTO -> recipeDTO.id().equals(id))
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
     }
 }
