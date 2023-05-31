@@ -2,9 +2,11 @@ package com.codecool.elproyectegrandesprint.javatomatams.controller;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.RecipeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @RestController
@@ -24,8 +26,17 @@ public class RecipeController {
     public RecipeDTO postRecipes(@RequestParam String name, String preparation){
         return recipeService.addRecipe(name, preparation);
     }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> handleMissing() {
+        return ResponseEntity.notFound().build();
+    }
     @GetMapping(value = "id")
-    public RecipeDTO getRecipeByID(@PathVariable UUID id) {
-        return recipeService.getRecipeByID(id);
+    public ResponseEntity<RecipeDTO> getRecipeByID(@PathVariable UUID id) {
+        try {
+            return ResponseEntity.ok(recipeService.getRecipeByID(id));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
