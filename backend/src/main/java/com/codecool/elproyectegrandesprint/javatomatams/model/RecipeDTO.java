@@ -1,3 +1,6 @@
 package com.codecool.elproyectegrandesprint.javatomatams.model;
 
-public record RecipeDTO(String name, String preparation) {}
+import java.time.LocalDateTime;
+
+public record RecipeDTO(String name, String preparation, LocalDateTime creationDate) {
+}
