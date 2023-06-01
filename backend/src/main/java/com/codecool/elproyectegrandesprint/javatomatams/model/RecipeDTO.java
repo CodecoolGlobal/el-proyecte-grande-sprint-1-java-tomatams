@@ -44,7 +44,7 @@ public class RecipeDTO {
             throw new InvalidRecipeTitleException("Can't add this recipe, because not valid title:" + title);
         }
     }
-    public boolean isValidTitle(String title) {
+    private boolean isValidTitle(String title) {
         for (int i = 0; i < title.length(); i++) {
             char c = title.charAt(i);
             if (!Character.isLetter(c) && c != ' ') {
