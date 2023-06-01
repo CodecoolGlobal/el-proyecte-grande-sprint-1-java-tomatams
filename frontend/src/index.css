@@ -51,3 +51,7 @@ main {
   height: 380px;
   overflow-y: hidden;
 }
+
+.recipe-preparation-text {
+  white-space: pre-line;
+}
