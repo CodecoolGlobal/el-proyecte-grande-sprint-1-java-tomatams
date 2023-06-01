@@ -23,8 +23,8 @@ const RecipeList = () => {
   return (
     <>
       {data.map((recipe) =>
-        <div className="recipe-box" key={recipe.id}>
-          <Link to={`/recipes/${recipe.id}`}>
+        <div className="recipe-box" key={recipe.id} >
+          <Link to={`/recipes/${recipe.id}`} style={{ textDecoration: 'none' }}>
             <Recipe recipe={recipe} />
           </Link>
         </div>

@@ -5,10 +5,10 @@ import Logo from "../Logo.png";
 const Header = () => {
   return (
     <header>
-      <div className="container">
-        <img id="logo-img" src={Logo} alt="website-logo" width="300"/>
+      <div className="header-container">
+        <img id="logo-img" src={Logo} alt="website-logo" width="300" />
         <Link to="/create">
-        <button>Create new recipe</button>  
+          <button>Create new recipe</button>
         </Link>
       </div>
     </header>
