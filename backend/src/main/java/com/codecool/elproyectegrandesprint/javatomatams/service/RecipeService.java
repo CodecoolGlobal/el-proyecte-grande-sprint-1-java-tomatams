@@ -6,6 +6,7 @@ import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.Inval
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,5 +30,14 @@ public class RecipeService {
             RecipeDTO newRecipe = new RecipeDTO(newRecipeDTO.title(), newRecipeDTO.preparation(), LocalDateTime.now());
             storage.addRecipe(newRecipe);
             return newRecipe;
+    }
+
+    public List<RecipeDTO> addRecipes(List<NewRecipeDTO> recipes) throws InvalidRecipeTitleException {
+        List<RecipeDTO> recipeList = new ArrayList<>();
+        for (NewRecipeDTO recipe : recipes) {
+            RecipeDTO addedRecipe = addRecipe(recipe);
+            recipeList.add(addedRecipe);
+        }
+        return recipeList;
     }
 }
