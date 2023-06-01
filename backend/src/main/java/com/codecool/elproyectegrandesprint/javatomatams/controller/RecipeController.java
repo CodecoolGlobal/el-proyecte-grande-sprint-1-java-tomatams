@@ -47,7 +47,6 @@ public class RecipeController {
 
     @GetMapping(value = "{id}")
     public ResponseEntity<RecipeDTO> getRecipeByID(@PathVariable("id") UUID id) {
-        System.out.println(id);
         try {
             return ResponseEntity.ok(recipeService.getRecipeByID(id));
         } catch (NoSuchElementException e) {
@@ -66,4 +65,15 @@ public class RecipeController {
             throw new RuntimeException(e);
         }
     }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<List<RecipeDTO>>  deleteRecipeByID(@PathVariable("id") UUID id) {
+        try {
+            List<RecipeDTO> newrecipeList = recipeService.deleteRecipeByID(id);
+            return ResponseEntity.accepted().build();
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

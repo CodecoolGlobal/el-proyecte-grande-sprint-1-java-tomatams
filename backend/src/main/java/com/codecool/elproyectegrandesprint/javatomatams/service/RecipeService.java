@@ -41,4 +41,8 @@ public class RecipeService {
         }
         return recipeList;
     }
+
+    public List<RecipeDTO> deleteRecipeByID(UUID id) {
+        return storage.deleteRecipeById(id);
+    }
 }
