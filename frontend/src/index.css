@@ -16,6 +16,30 @@ header {
   align-items: center;
 }
 
+p {
+  font-size: 20px;
+}
+
+label {
+  font-size: 20px;
+}
+
+textarea {
+  height: 150px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+input {
+  height: 24px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -25,6 +49,16 @@ a {
   text-decoration: none;
   color: black;
   cursor: pointer;
+}
+
+button {
+  background-color: #ff4181;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
+  padding: 10px 15px;
+  border: #ff4181;
+  border-radius: 20px;
 }
 
 .header-container {
@@ -182,4 +216,26 @@ main {
 
 .recipe-preparation-text {
   white-space: pre-line;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.form-fields {
+  width: 30%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-buttons {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
 }
