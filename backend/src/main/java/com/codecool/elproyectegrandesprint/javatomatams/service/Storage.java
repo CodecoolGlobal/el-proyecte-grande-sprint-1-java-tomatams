@@ -25,4 +25,10 @@ public class Storage {
                 .findFirst()
                 .orElseThrow(NoSuchElementException::new);
     }
+
+    public List<RecipeDTO> deleteRecipeById(UUID id) {
+        RecipeDTO deleteRecipe = getRecipeByID(id);
+        recipes.remove(deleteRecipe);
+        return recipes;
+    }
 }
