@@ -2,6 +2,7 @@ package com.codecool.elproyectegrandesprint.javatomatams.model;
 
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -9,9 +10,9 @@ public class RecipeDTO {
     private final UUID ID;
     private final String title;
     private final String preparation;
-    private final LocalDateTime creationDate;
+    private final LocalDate creationDate;
 
-    public RecipeDTO(String title, String preparation, LocalDateTime creationDate) throws InvalidRecipeTitleException {
+    public RecipeDTO(String title, String preparation, LocalDate creationDate) throws InvalidRecipeTitleException {
         titleValidator(title);
         this.ID = UUID.randomUUID();
         this.title = title;
@@ -31,7 +32,7 @@ public class RecipeDTO {
         return preparation;
     }
 
-    public LocalDateTime getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
