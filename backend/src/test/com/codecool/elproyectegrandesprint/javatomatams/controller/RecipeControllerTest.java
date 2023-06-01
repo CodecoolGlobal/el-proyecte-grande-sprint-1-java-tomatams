@@ -26,12 +26,12 @@ class RecipeControllerTest {
             StandardCharsets.UTF_8);
 
     @Test
-    void getAllRecipes() throws Exception {
+    void getAllRecipesTest() throws Exception {
         this.mockMvc.perform(get("/recipes/all")).andExpect(status().isOk());
     }
 
     @Test
-    void postRecipes() throws Exception {
+    void postRecipesTest() throws Exception {
         this.mockMvc.perform(post("/recipes/add")
                 .contentType(mediaType)
                 .content("{\"title\": \"Bakancsleves\",\"preparation\": \"Végy egy bakancsot és főzzed míg büdös\"}"
@@ -40,10 +40,7 @@ class RecipeControllerTest {
     }
 
     @Test
-    void handleMissing() {
-    }
-
-    @Test
     void getRecipeByID() {
+
     }
 }

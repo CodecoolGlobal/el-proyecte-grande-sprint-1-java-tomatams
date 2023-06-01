@@ -12,7 +12,7 @@ const RecipeList = () => {
     fetchRecipes().then((recipes) => {
       setData(recipes);
     });
-  });
+  }, []);
 
   if(data === null) {
     return (

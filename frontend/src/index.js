@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from './Pages/Layout';
 import RecipeList from './Pages/RecipeList';
+import RecipeCreator from './Pages/RecipeCreator';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <RecipeList/>
+      },
+      {
+        path: "/create",
+        element: <RecipeCreator/>
       }
     ]
   }
