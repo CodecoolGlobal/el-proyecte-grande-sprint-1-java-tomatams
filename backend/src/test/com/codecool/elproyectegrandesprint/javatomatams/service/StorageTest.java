@@ -5,16 +5,15 @@ import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.Inval
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StorageTest {
     Storage storage = new Storage();
     @Test
-    void addRecipe() throws InvalidRecipeTitleException {
+    void addRecipeTruesyTest() throws InvalidRecipeTitleException {
+
         RecipeDTO newRecipe = new RecipeDTO(
                 "Bakancs Leves",
                 "Tegyél bakancsot vízbe és főzd amíg nem büdös.",
@@ -24,13 +23,33 @@ class StorageTest {
     }
 
     @Test
-    void getAllRecipes() {
-
+    void getAllRecipesSizeTruesyTest() throws InvalidRecipeTitleException {
+        RecipeDTO newRecipe = new RecipeDTO(
+                "Bakancs Leves",
+                "Tegyél bakancsot vízbe és főzd amíg nem büdös.",
+                LocalDate.now());
+        RecipeDTO anotherRecipe = new RecipeDTO(
+                "Kutya szőr kuglóf",
+                "Végy egy kutya szőréből és süsd sütőben kedved szerint.",
+                LocalDate.now());
+        storage.addRecipe(newRecipe);
+        storage.addRecipe(anotherRecipe);
+        assertEquals(2, storage.getAllRecipes().size());
     }
 
     @Test
-    void getRecipeByID() {
-        mockStatic(UUID.class);
-        when(UUID.randomUUID()).thenReturn(UUID.fromString("b1c47868-69b9-4b5c-950d-fae95f2c7daa"));
+    void getAllRecipesItemsTruesyTest() throws InvalidRecipeTitleException {
+        RecipeDTO newRecipe = new RecipeDTO(
+                "Bakancs Leves",
+                "Tegyél bakancsot vízbe és főzd amíg nem büdös.",
+                LocalDate.now());
+        RecipeDTO anotherRecipe = new RecipeDTO(
+                "Kutya szőr kuglóf",
+                "Végy egy kutya szőréből és süsd sütőben kedved szerint.",
+                LocalDate.now());
+        storage.addRecipe(newRecipe);
+        storage.addRecipe(anotherRecipe);
+        assertEquals(List.of(newRecipe, anotherRecipe), storage.getAllRecipes());
     }
+
 }
