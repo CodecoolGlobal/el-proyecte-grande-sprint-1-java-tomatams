@@ -1,6 +1,7 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import static org.mockito.Mockito.*;
 class StorageTest {
     Storage storage = new Storage();
     @Test
-    void addRecipe() {
+    void addRecipe() throws InvalidRecipeTitleException {
         RecipeDTO newRecipe = new RecipeDTO(
                 "Bakancs Leves",
                 "Tegyél bakancsot vízbe és főzd amíg nem büdös.",
