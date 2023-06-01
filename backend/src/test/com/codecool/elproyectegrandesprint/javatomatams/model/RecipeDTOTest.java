@@ -1,5 +1,6 @@
 package com.codecool.elproyectegrandesprint.javatomatams.model;
 
+import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RecipeDTOTest {
     private RecipeDTO newRecipe;
     @BeforeEach
-    void setUp() {
+    void setUp() throws InvalidRecipeTitleException {
         newRecipe = new RecipeDTO("title", "preparation", LocalDateTime.now());
     }
 
