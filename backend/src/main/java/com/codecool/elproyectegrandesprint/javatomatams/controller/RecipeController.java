@@ -69,7 +69,8 @@ public class RecipeController {
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<List<RecipeDTO>>  deleteRecipeByID(@PathVariable("id") UUID id) {
         try {
-            return ResponseEntity.ok(recipeService.deleteRecipeByID(id));
+            List<RecipeDTO> newrecipeList = recipeService.deleteRecipeByID(id);
+            return ResponseEntity.accepted().build();
         } catch (NoSuchElementException e) {
             return ResponseEntity.notFound().build();
         }
