@@ -36,7 +36,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://10.44.29.129:8080",
+  "proxy": "http://10.44.29.156:8080",
   "devDependencies": {
     "prettier": "^2.8.8"
   }
