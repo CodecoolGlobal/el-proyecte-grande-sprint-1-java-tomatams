@@ -1,5 +1,6 @@
 package com.codecool.elproyectegrandesprint.javatomatams.controller;
 
+import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.RecipeService;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
@@ -28,10 +29,11 @@ public class RecipeController {
     public List<RecipeDTO> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
+
     @PostMapping(value = "add")
-    public ResponseEntity<RecipeDTO> postRecipes(@RequestParam String title, String preparation){
+    public ResponseEntity<RecipeDTO> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO){
         try {
-            return ResponseEntity.ok(recipeService.addRecipe(title, preparation));
+            return ResponseEntity.ok(recipeService.addRecipe(newRecipeDTO));
         } catch (InvalidRecipeTitleException e) {
             return ResponseEntity.badRequest().build();
         }
