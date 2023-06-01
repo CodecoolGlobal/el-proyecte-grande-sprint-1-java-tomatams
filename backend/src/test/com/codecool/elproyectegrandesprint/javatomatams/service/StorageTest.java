@@ -5,10 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StorageTest {
     Storage storage = new Storage();
@@ -52,9 +50,4 @@ class StorageTest {
         assertEquals(List.of(newRecipe, anotherRecipe), storage.getAllRecipes());
     }
 
-    @Test
-    void getRecipeByID() {
-        mockStatic(UUID.class);
-        when(UUID.randomUUID()).thenReturn(UUID.fromString("b1c47868-69b9-4b5c-950d-fae95f2c7daa"));
-    }
 }
