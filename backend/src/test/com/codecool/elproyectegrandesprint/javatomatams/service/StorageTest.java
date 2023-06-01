@@ -4,6 +4,7 @@ import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -17,7 +18,7 @@ class StorageTest {
         RecipeDTO newRecipe = new RecipeDTO(
                 "Bakancs Leves",
                 "Tegyél bakancsot vízbe és főzd amíg nem büdös.",
-                LocalDateTime.now());
+                LocalDate.now());
         storage.addRecipe(newRecipe);
         assertEquals(1, storage.getAllRecipes().size());
     }
