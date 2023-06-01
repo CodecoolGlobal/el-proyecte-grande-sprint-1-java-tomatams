@@ -31,3 +31,13 @@ a:-webkit-any-link {
   justify-content: center;
   align-items: center;
 }
+
+.recipe-content {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  height: 380px;
+  overflow-y: hidden;
+}
+
+.recipe-preparation-text {
+  white-space: pre-line;
+}
