@@ -2,23 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from './Pages/Layout';
 import RecipeList from './Pages/RecipeList';
 import RecipeCreator from './Pages/RecipeCreator';
+import RecipePage from './Pages/RecipePage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
         path: "/",
-        element: <RecipeList/>
+        element: <RecipeList />
       },
       {
         path: "/create",
-        element: <RecipeCreator/>
+        element: <RecipeCreator />
+      },
+      {
+        path: "/recipes/:id",
+        element: <RecipePage />
       }
     ]
   }
@@ -27,7 +32,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
