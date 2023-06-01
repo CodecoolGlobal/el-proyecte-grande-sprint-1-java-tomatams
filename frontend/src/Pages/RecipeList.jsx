@@ -21,15 +21,19 @@ const RecipeList = () => {
     )
   }
   return (
-    <>
-      {data.map((recipe) =>
-        <div className="recipe-box" key={recipe.id} >
-          <Link to={`/recipes/${recipe.id}`} style={{ textDecoration: 'none' }}>
-            <Recipe recipe={recipe} />
-          </Link>
-        </div>
-      )}
-    </>
+    <main>
+      <div className="main-container">
+        {data.map((recipe) =>
+          <div className="recipe-box" key={recipe.id} >
+            <div className="recipe-content">
+              <Link to={`/recipes/${recipe.id}`} style={{ textDecoration: 'none' }}>
+                <Recipe recipe={recipe} />
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </main>
   )
 };
 
