@@ -31,9 +31,13 @@ const RecipePage = () => {
   };
 
   return (
-    <Recipe
-      recipe={recipe}
-    />
+    <main>
+      <div className="recipe-container">
+        <Recipe
+          recipe={recipe}
+        />
+      </div>
+    </main>
   )
 };
 

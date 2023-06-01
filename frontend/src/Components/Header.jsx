@@ -13,21 +13,23 @@ const Header = () => {
       <div className="header-container">
         <img id="logo-img" src={Logo} alt="website-logo" width="300" />
       </div>
-      <nav className={`navigation ${active}`} onClick={handleClick}>
-        <span className={`toggle-menu ${active}`} onClick={handleClick}></span>
+      <nav>
+        <div className={`navigation ${active}`} onClick={handleClick}>
+          <span className={`toggle-menu ${active}`} onClick={handleClick}></span>
 
-        <li>
-          <Link to="/create">Add new recipe</Link>
-        </li>
-        <li>
-          <a href="#">About us</a>
-        </li>
-        <li>
-          <a href="#">User</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
+          <li>
+            <Link to="/create">Add new recipe</Link>
+          </li>
+          <li>
+            <a href="#">About us</a>
+          </li>
+          <li>
+            <a href="#">User</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+        </div>
       </nav>
     </header>
   );
