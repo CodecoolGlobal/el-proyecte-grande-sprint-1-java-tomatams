@@ -44,8 +44,10 @@ public class RecipeController {
     public ResponseEntity<String> handleMissing() {
         return ResponseEntity.notFound().build();
     }
+
     @GetMapping(value = "{id}")
     public ResponseEntity<RecipeDTO> getRecipeByID(@PathVariable("id") UUID id) {
+        System.out.println(id);
         try {
             return ResponseEntity.ok(recipeService.getRecipeByID(id));
         } catch (NoSuchElementException e) {
