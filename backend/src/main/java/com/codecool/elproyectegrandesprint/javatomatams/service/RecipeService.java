@@ -5,6 +5,7 @@ import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class RecipeService {
     }
 
     public RecipeDTO addRecipe(NewRecipeDTO newRecipeDTO) throws InvalidRecipeTitleException {
-            RecipeDTO newRecipe = new RecipeDTO(newRecipeDTO.title(), newRecipeDTO.preparation(), LocalDateTime.now());
+            RecipeDTO newRecipe = new RecipeDTO(newRecipeDTO.title(), newRecipeDTO.preparation(), LocalDate.now());
             storage.addRecipe(newRecipe);
             return newRecipe;
     }
