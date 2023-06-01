@@ -3,7 +3,6 @@ package com.codecool.elproyectegrandesprint.javatomatams.model;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class RecipeDTO {
@@ -45,14 +44,24 @@ public class RecipeDTO {
             throw new InvalidRecipeTitleException("Can't add this recipe, because not valid title:" + title);
         }
     }
-    private boolean isValidTitle(String title) {
-        for (int i = 0; i < title.length(); i++) {
-            char c = title.charAt(i);
-            if (!Character.isLetter(c) && c != ' ') {
-                return false;
-            }
+    public boolean isValidTitle (String title) {
+        if (title.trim().isEmpty()) {
+            return false; 
+        }
+        if (isContainOnlyLettersOrSpace(title)){
+            return false;
         }
         return true;
+    }
+
+    private boolean isContainOnlyLettersOrSpace(String title) {
+        for (int i = 0; i < title.length(); i++) {
+            char character = title.charAt(i);
+            if (!Character.isLetter(character) && character != ' ') {
+                return true;
+            }
+        }
+        return false;
     }
 }
 
