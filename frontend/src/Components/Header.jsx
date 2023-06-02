@@ -10,9 +10,11 @@ const Header = () => {
   };
   return (
     <header>
-      <div className="header-container">
-        <img id="logo-img" src={Logo} alt="website-logo" width="300" />
-      </div>
+      <Link to={`/`} style={{ textDecoration: 'none' }}>
+        <div className="header-container">
+          <img id="logo-img" src={Logo} alt="website-logo" width="300" />
+        </div>
+      </Link>
       <nav>
         <div className={`navigation ${active}`} onClick={handleClick}>
           <span className={`toggle-menu ${active}`} onClick={handleClick}></span>
