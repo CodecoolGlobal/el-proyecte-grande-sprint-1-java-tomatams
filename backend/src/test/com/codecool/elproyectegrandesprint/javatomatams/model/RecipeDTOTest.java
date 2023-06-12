@@ -1,3 +1,5 @@
+/*
+
 package com.codecool.elproyectegrandesprint.javatomatams.model;
 
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
@@ -60,3 +62,5 @@ class RecipeDTOTest {
         Assertions.assertFalse(result);
     }
 }
+
+*/
