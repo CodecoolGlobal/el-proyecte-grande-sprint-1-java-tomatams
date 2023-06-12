@@ -1,39 +1,28 @@
 package com.codecool.elproyectegrandesprint.javatomatams.model;
 
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class RecipeDTO {
-    private final UUID ID;
-    private final String title;
-    private final String preparation;
-    private final LocalDate creationDate;
 
-    public RecipeDTO(String title, String preparation, LocalDate creationDate) throws InvalidRecipeTitleException {
-        titleValidator(title);
-        this.ID = UUID.randomUUID();
-        this.title = title;
-        this.preparation = preparation;
-        this.creationDate = creationDate;
-    }
+    @Id
+    private UUID ID;
+    private String title;
+    private String preparation;
+    private LocalDate creationDate;
 
-    public UUID getID() {
-        return ID;
-    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getPreparation() {
-        return preparation;
-    }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
 
     public boolean isThisID(UUID id){
         return ID.equals(id);
@@ -48,10 +37,7 @@ public class RecipeDTO {
         if (title.trim().isEmpty()) {
             return false; 
         }
-        if (isContainOnlyLettersOrSpace(title)){
-            return false;
-        }
-        return true;
+        return !isContainOnlyLettersOrSpace(title);
     }
 
     private boolean isContainOnlyLettersOrSpace(String title) {
