@@ -54,13 +54,12 @@ public class RecipeController {
         }
     }
 
-    @PostMapping(value = "/add-recipes-from-json")
-    public List<RecipeDTO> addRecipesFromJson() {
+    private void addRecipesFromJson() {
         try {
             InputStream inputStream = new ClassPathResource("recipes.json").getInputStream();
             List<NewRecipeDTO> recipes = objectMapper.readValue(inputStream, new TypeReference<List<NewRecipeDTO>>() {});
             List<RecipeDTO> addedRecipes = recipeService.addRecipes(recipes);
-            return ResponseEntity.ok(addedRecipes).getBody();
+            ResponseEntity.ok(addedRecipes).getBody();
         } catch (InvalidRecipeTitleException | IOException e) {
             throw new RuntimeException(e);
         }
