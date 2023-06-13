@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IngredientPart from "./IngredientPart";
 import IngredientForm from "./IngredientForm";
 
@@ -8,8 +8,11 @@ const IngredientList = ( { addIngredient }) => {
     function writeIngredient(newAmount, newUnit, newName) {
         const newIngredient = [...ingredients, { amount: Number(newAmount), unit: newUnit, ingredientName: newName }];
         setIngredients(newIngredient);
-        addIngredient(ingredients);
     };
+    
+    useEffect(() => {
+        addIngredient(ingredients);
+    },[ingredients, addIngredient])
 
     return (
         <div>
