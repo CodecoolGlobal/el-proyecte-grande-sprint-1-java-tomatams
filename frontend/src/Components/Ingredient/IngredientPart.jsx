@@ -1,9 +1,11 @@
-const IngredientPart  = (onClick) => {
+const IngredientPart  = ( { ingredient } ) => {
     return (
-    <div>
-        <label>Ingredients</label>
-        <button onClick={() => onClick}>Add New Ingredient</button>
-    </div>);
+        <tr>
+            <td>{ingredient.amount}</td>
+            <td>{ingredient.unit}</td>
+            <td>{ingredient.ingredientName}</td>
+        </tr>
+    );
 }
 
 export default IngredientPart;
