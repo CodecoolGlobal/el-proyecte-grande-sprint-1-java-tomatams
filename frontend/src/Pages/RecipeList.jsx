@@ -13,10 +13,8 @@ const fetchRecipesWithParams = (query) => {
 
 const RecipeList = () => {
   const [data, setData] = useState(null);
-  let location = useLocation();
-  let search = location.search;
-  console.log(location);
-
+  const location = useLocation();
+  const search = location.search;
 
   useEffect(() => {
     if (search) {
