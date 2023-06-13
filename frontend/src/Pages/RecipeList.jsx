@@ -16,6 +16,7 @@ const RecipeList = () => {
   const location = useLocation();
   const search = location.search;
 
+
   useEffect(() => {
     if (search) {
       fetchRecipesWithParams(search).then((recipes) => {

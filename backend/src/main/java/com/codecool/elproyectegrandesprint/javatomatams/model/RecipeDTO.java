@@ -2,6 +2,8 @@ package com.codecool.elproyectegrandesprint.javatomatams.model;
 
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -19,6 +21,7 @@ public class RecipeDTO {
     @Id
     private UUID ID;
     private String title;
+    private int cookingTime;
     private String preparation;
     private LocalDate creationDate;
 

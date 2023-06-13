@@ -1,5 +1,7 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service;
 
+import com.codecool.elproyectegrandesprint.javatomatams.model.CookingTime;
+import com.codecool.elproyectegrandesprint.javatomatams.model.QueryDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.RecipeRepository;
 import com.codecool.elproyectegrandesprint.javatomatams.service.builder.RecipeBuilder;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
@@ -26,8 +28,12 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    public List<RecipeDTO> getFilteredRecipes(String searchText) {
-        return recipeRepository.findRecipeByTitle(searchText);
+    public List<RecipeDTO> getFilteredRecipes(QueryDTO queryDTO) {
+        String title = queryDTO.getSearch();
+        CookingTime cookingTime = CookingTime.valueOf(queryDTO.getCookingTime());
+        int minCookingTime = cookingTime.getMin();
+        int maxCookingTime = cookingTime.getMax();
+        return recipeRepository.findRecipeByTitle(title, minCookingTime, maxCookingTime);
     }
 
     public RecipeDTO getRecipeByID(UUID id) {

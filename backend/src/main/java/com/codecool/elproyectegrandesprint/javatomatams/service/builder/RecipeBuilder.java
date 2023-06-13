@@ -14,6 +14,7 @@ public class RecipeBuilder {
         return RecipeDTO.builder()
                 .ID(UUID.randomUUID())
                 .title(newRecipeDTO.title())
+                .cookingTime(newRecipeDTO.cookingTime())
                 .creationDate(LocalDate.now())
                 .preparation(newRecipeDTO.preparation())
                 .build();
