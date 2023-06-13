@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Recipe from "../Components/Recipe";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const fetchRecipes = () => {
   return fetch(`/recipes/all`).then((res) => res.json());
@@ -8,6 +8,9 @@ const fetchRecipes = () => {
 
 const RecipeList = () => {
   const [data, setData] = useState(null);
+  const params = useParams();
+
+  console.log(params);
 
   useEffect(() => {
     fetchRecipes().then((recipes) => {
