@@ -4,14 +4,10 @@ import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.RecipeService;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -33,6 +29,7 @@ public class RecipeController {
 
     @PostMapping(value = "add")
     public ResponseEntity<RecipeDTO> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO){
+        System.out.println(newRecipeDTO);
         try {
             return ResponseEntity.ok(recipeService.addRecipe(newRecipeDTO));
         } catch (InvalidRecipeTitleException e) {
@@ -54,16 +51,6 @@ public class RecipeController {
         }
     }
 
-    private void addRecipesFromJson() {
-        try {
-            InputStream inputStream = new ClassPathResource("recipes.json").getInputStream();
-            List<NewRecipeDTO> recipes = objectMapper.readValue(inputStream, new TypeReference<List<NewRecipeDTO>>() {});
-            List<RecipeDTO> addedRecipes = recipeService.addRecipes(recipes);
-            ResponseEntity.ok(addedRecipes).getBody();
-        } catch (InvalidRecipeTitleException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<List<RecipeDTO>>  deleteRecipeByID(@PathVariable("id") UUID id) {
