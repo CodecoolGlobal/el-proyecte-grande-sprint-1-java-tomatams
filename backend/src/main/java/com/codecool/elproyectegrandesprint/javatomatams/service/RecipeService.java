@@ -1,11 +1,12 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service;
 
+import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.RecipeRepository;
+import com.codecool.elproyectegrandesprint.javatomatams.service.builder.RecipeBuilder;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -13,22 +14,24 @@ import java.util.UUID;
 @Service
 public class RecipeService {
 
-    private final Storage storage;
+    private final RecipeRepository recipeRepository;
+    private final RecipeBuilder recipeBuilder;
 
-    public RecipeService(Storage storage) {
-        this.storage = storage;
+    public RecipeService(RecipeBuilder recipeBuilder, RecipeRepository recipeRepository) {
+        this.recipeBuilder = recipeBuilder;
+        this.recipeRepository = recipeRepository;
     }
 
     public List<RecipeDTO> getAllRecipes() {
-        return storage.getAllRecipes();
+        return recipeRepository.findAll();
     }
     public RecipeDTO getRecipeByID(UUID id) {
-        return storage.getRecipeByID(id);
+        return recipeRepository.getRecipeDTOByID(id);
     }
 
     public RecipeDTO addRecipe(NewRecipeDTO newRecipeDTO) throws InvalidRecipeTitleException {
-            RecipeDTO newRecipe = new RecipeDTO(newRecipeDTO.title(), newRecipeDTO.preparation(), LocalDate.now());
-            storage.addRecipe(newRecipe);
+            RecipeDTO newRecipe = recipeBuilder.recipeBuilder(newRecipeDTO);
+            recipeRepository.save(newRecipe);
             return newRecipe;
     }
 
@@ -42,6 +45,7 @@ public class RecipeService {
     }
 
     public List<RecipeDTO> deleteRecipeByID(UUID id) {
-        return storage.deleteRecipeById(id);
+        recipeRepository.deleteRecipeDTOByID(id);
+        return getAllRecipes();
     }
 }

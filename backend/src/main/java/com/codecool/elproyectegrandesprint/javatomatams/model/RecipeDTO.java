@@ -23,7 +23,6 @@ public class RecipeDTO {
     private LocalDate creationDate;
 
 
-
     public boolean isThisID(UUID id){
         return ID.equals(id);
     }
