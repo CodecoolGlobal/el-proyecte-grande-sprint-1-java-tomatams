@@ -13,7 +13,7 @@ const SearchBar = ({ onSubmit }) => {
 
     navigate({
       pathname: "/search",
-      search: `?${createSearchParams(entries)}`
+      search: `${createSearchParams(entries)}`
     })
   }
 

@@ -25,6 +25,11 @@ public class RecipeService {
     public List<RecipeDTO> getAllRecipes() {
         return recipeRepository.findAll();
     }
+
+    public List<RecipeDTO> getFilteredRecipes(String searchText) {
+        return recipeRepository.findRecipeByTitle(searchText);
+    }
+
     public RecipeDTO getRecipeByID(UUID id) {
         return recipeRepository.getRecipeDTOByID(id);
     }
@@ -48,4 +53,5 @@ public class RecipeService {
         recipeRepository.deleteRecipeDTOByID(id);
         return getAllRecipes();
     }
+
 }
