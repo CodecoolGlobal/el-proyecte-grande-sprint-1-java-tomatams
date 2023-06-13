@@ -31,6 +31,12 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
 
+    @GetMapping(value = "/search")
+    public List<RecipeDTO> getFilteredRecipes(@RequestParam(value="search") String searchText){
+        System.out.println(searchText);
+        return recipeService.getFilteredRecipes(searchText);
+    }
+
     @PostMapping(value = "add")
     public ResponseEntity<RecipeDTO> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO){
         try {

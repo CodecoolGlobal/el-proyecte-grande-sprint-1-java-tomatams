@@ -1,19 +1,35 @@
 import { useEffect, useState } from "react";
 import Recipe from "../Components/Recipe";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const fetchRecipes = () => {
   return fetch(`/recipes/all`).then((res) => res.json());
 };
 
+const fetchRecipesWithParams = (query) => {
+  return fetch(`/recipes/search${query}`).then((res) => res.json());
+
+}
+
 const RecipeList = () => {
   const [data, setData] = useState(null);
+  let location = useLocation();
+  let search = location.search;
+  console.log(location);
+
 
   useEffect(() => {
-    fetchRecipes().then((recipes) => {
-      setData(recipes);
-    });
-  }, []);
+    if (search) {
+      fetchRecipesWithParams(search).then((recipes) => {
+        setData(recipes);
+      })
+    } else {
+      fetchRecipes().then((recipes) => {
+        setData(recipes);
+      });
+    }
+
+  }, [search]);
 
   if (data === null) {
     return (
