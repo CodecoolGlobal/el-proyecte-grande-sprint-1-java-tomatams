@@ -1,3 +1,5 @@
+import IngredientList from "./Ingredient/IngredientList";
+
 const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
   const onSubmit = (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
             defaultValue={recipe ? recipe.title : null}
           ></input>
         </div>
+        {/* <IngredientList/> */}
         <div className="form-fields">
           <label htmlFor="preparation">Preparation</label>
           <textarea id="preparation" name="preparation">
