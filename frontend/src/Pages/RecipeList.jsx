@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Recipe from "../Components/Recipe";
 import { Link, useLocation } from "react-router-dom";
+import RecipeCard from "../Components/RecipeCard";
 
 const fetchRecipes = () => {
   return fetch(`/recipes/all`).then((res) => res.json());
@@ -42,7 +43,7 @@ const RecipeList = () => {
           <div className="recipe-box" key={recipe.id} >
             <div className="recipe-content">
               <Link to={`/recipes/${recipe.id}`} style={{ textDecoration: 'none' }}>
-                <Recipe recipe={recipe} />
+                <RecipeCard recipe={recipe} />
               </Link>
             </div>
           </div>

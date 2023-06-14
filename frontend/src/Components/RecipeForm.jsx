@@ -33,6 +33,7 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
         <IngredientList id="ingredients" name="ingredients" addIngredient={setnewIngredients}>
           {recipe ? recipe.ingredients = newIngredients : null}
         </IngredientList>
+
         <div className="form-fields">
           <label htmlFor="cooking-time">Cooking time (minutes)</label>
           <input
@@ -42,12 +43,23 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
           // defaultValue={recipe ? recipe.cooking-time : null}
           ></input>
         </div>
+
+        <div className="form-fields">
+          <label htmlFor="image">The Url of image</label>
+          <input
+            type="text"
+            id="image"
+            name="image"
+          ></input>
+        </div>
+
         <div className="form-fields">
           <label htmlFor="preparation">Preparation</label>
           <textarea id="preparation" name="preparation">
             {recipe ? recipe.preparation : null}
           </textarea>
         </div>
+
         <div className="form-field-buttons">
           <button type="submit" disabled={disabled}>
             {recipe ? "Update recipe" : "Create recipe"}
