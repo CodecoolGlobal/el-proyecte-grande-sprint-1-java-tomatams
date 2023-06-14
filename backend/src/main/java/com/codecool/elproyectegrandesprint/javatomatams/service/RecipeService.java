@@ -1,8 +1,7 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service;
 
 
-import com.codecool.elproyectegrandesprint.javatomatams.model.CookingTime;
-import com.codecool.elproyectegrandesprint.javatomatams.model.QueryDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.model.*;
 import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.IngredientRepository;
 import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.RecipeRepository;
 import com.codecool.elproyectegrandesprint.javatomatams.service.builder.IngredientBuilder;
