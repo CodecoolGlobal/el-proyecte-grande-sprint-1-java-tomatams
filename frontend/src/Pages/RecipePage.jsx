@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Recipe from "../Components/Recipe";
 
-const fetchRecipe = (id) => {
-  return fetch(`/recipes/${id}`)
+async function fetchRecipe (id) {
+  return await fetch(`/recipes/${id}`)
     .then((res) => res.json()
     )
 }
@@ -16,7 +16,7 @@ const RecipePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchRecipe(id)
+     fetchRecipe(id)
       .then((recipe) => {
         setRecipe(recipe);
         setLoading(false);
