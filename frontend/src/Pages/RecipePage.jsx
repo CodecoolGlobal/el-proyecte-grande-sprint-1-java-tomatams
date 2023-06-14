@@ -9,11 +9,23 @@ async function fetchRecipe (id) {
     )
 }
 
+const deleteRecipe = (id) => {
+  return fetch(`/recipes/delete/${id}`, {method: "DELETE"}).then((res) => res.json());
+}
+
 const RecipePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const handleDelete = (id) => {
+    console.log(id);
+    deleteRecipe(id).catch((error) => {
+      console.log(error);
+    });
+  }
+
 
   useEffect(() => {
      fetchRecipe(id)
@@ -34,7 +46,7 @@ const RecipePage = () => {
     <main>
       <div className="recipe-container">
         <Recipe
-          recipe={recipe}
+          recipe={recipe} onDelete={handleDelete}
         />
       </div>
     </main>

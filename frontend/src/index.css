@@ -302,3 +302,16 @@ main {
   width: 0px;
 
 }
+
+#X {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteDiv {
+  display: flex;
+  justify-content: flex-end;
+}

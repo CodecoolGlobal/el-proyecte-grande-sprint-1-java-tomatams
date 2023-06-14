@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Recipe = ({ recipe }) => {
-  console.log("Recipe", typeof recipe.ingredientDTOS);
+const Recipe = ({ recipe, onDelete }) => {
   return (
     <div>
+      <div className="deleteDiv">
+        {onDelete && (<Link to="/"><button type="button" id="X" onClick={() => onDelete(recipe.id) }>X</button></Link>)}
+      </div>
       <h2>{recipe.title}</h2>
       <div>
         {recipe.ingredientDTOS.map((ingredient, index) => (
