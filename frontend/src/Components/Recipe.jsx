@@ -12,7 +12,9 @@ const Recipe = ({ recipe }) => {
   return (
     <div className="recipe">    
     <div style={imageStyle}></div>  
-    <h2>{recipe.title}</h2>
+    <div>
+      <div className="recipe-title">{recipe.title}</div>
+    </div>
       <div>
         {recipe.ingredientDTOS.map((ingredient, index) => (
           <div key={ingredient.id}>
