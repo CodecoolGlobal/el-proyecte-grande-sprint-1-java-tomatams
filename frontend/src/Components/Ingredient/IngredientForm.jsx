@@ -1,9 +1,5 @@
-import { useState } from "react";
 
-const IngredientForm = ( { writeIngredient } ) => {
-    const [amount, setAmount] = useState(0);
-    const [unit, setUnit] = useState("");
-    const [ingredientName, setIngredientName] = useState("");
+const IngredientForm = ( { writeIngredient, amount, setAmount, unit, setUnit, ingredientName, setIngredientName } ) => {
     const pushIngredient = (e) => {
         if(!amount || !unit || !ingredientName) return;
         writeIngredient(amount, unit, ingredientName);
