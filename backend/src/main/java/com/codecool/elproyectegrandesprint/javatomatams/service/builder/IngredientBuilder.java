@@ -20,6 +20,7 @@ public class IngredientBuilder{
                 .builder()
                 .name(newIngredientDTO.ingredientName())
                 .amount(newIngredientDTO.amount())
+                .unit(newIngredientDTO.unit())
                 .build();
         ingredientRepository.save(ingredientDTO);
         return ingredientDTO;
