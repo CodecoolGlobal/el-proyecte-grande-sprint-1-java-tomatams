@@ -29,6 +29,7 @@ const SearchBar = () => {
             <a className="search-btn" href="#">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </a>
+            <button className="detailed-search">detailed search</button>
           </div>
           <div className="search-cooking-time">
             <input
