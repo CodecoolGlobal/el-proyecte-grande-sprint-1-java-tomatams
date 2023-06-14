@@ -14,7 +14,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
+  height: 400px;
 }
 
 p {
@@ -265,23 +265,50 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
-.search-box:hover>.search-txt {
+.search-card {
+  visibility: hidden;
+  height: 0px;
+}
+
+.search-card.shown  {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: white;
+  width: 880px;
+  height: 600px;
+  border-radius: 40px;
+  transition: all 2s;
+  transition-delay: 0.5s;
+  visibility: visible;
+  margin-bottom: -550px;
+  border: #e84118 solid 2px;
+  z-index: 1;
+
+}
+.search-box.open > .search-txt {
   width: 600px;
   padding: 0 6px;
 }
 
-.search-box:hover > .detailed-search {
+.search-box.open > .detailed-search {
   display:initial;
 }
+.search-box.open > .search-card.shown {
+  visibility: visible;
+}
 
-.search-box:hover > .search-btn {
+.search-box.open > .search-btn {
   background: white;
 }
 
 .search-cooking-time {
-  position: relative;
+  padding: 40px;
+  margin-top: 20px;
+  width: 100%;
   top: 43%;
   left: 90%;
 }
@@ -313,6 +340,7 @@ main {
 
 .detailed-search {
  display: none;
+ width: 200px;
 }
 
 .recipe-image{
