@@ -263,7 +263,7 @@ main {
 }
 
 .search-box:hover > .search-txt {
-  width: 240px;
+  width: 600px;
   padding: 0 6px;
 }
 
@@ -314,4 +314,9 @@ main {
 .deleteDiv {
   display: flex;
   justify-content: flex-end;
+}
+.recipe-image{
+  width: 130px;
+  object-fit: cover;
+
 }

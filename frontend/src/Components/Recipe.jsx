@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const Recipe = ({ recipe, onDelete }) => {
   return (
     <div>
       <div className="deleteDiv">
         {onDelete && (<Link to="/"><button type="button" id="X" onClick={() => onDelete(recipe.id) }>X</button></Link>)}
       </div>
+      <img src={recipe.image} className="recipe-image" alt="Recipe" />
       <h2>{recipe.title}</h2>
       <div>
         {recipe.ingredientDTOS.map((ingredient, index) => (
@@ -20,7 +22,6 @@ const Recipe = ({ recipe, onDelete }) => {
       <p className="recipe-preparation-text">{recipe.preparation}</p>
       <p>{recipe.creationDate}</p>
     </div>
-
   )
 }
 

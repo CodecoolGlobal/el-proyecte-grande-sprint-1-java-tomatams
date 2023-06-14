@@ -17,9 +17,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
@@ -48,10 +47,11 @@ public class RecipeService {
         String title = queryDTO.getSearch();
         int minCookingTime = 0;
         int maxCookingTime = 10000;
+
         if(queryDTO.getCookingTime() != null) {
-        CookingTime cookingTime = CookingTime.valueOf(queryDTO.getCookingTime());
-        minCookingTime = cookingTime.getMin();
-        maxCookingTime = cookingTime.getMax();
+        Set<CookingTime> cookingTimes = queryDTO.getCookingTime().stream().map(CookingTime::valueOf).collect(Collectors.toSet());
+        minCookingTime = cookingTimes.stream().min(Comparator.comparing(CookingTime::getMin)).get().getMin();
+        maxCookingTime = cookingTimes.stream().max(Comparator.comparing(CookingTime::getMax)).get().getMax();
         }
         return recipeRepository.findRecipeByTitle(title, minCookingTime, maxCookingTime);
     }
@@ -61,13 +61,15 @@ public class RecipeService {
     }
 
     public RecipeDTO addRecipe(NewRecipeDTO newRecipeDTO) throws InvalidRecipeTitleException {
-        List<IngredientDTO> ingredientDTOS = newRecipeDTO.ingredients()
+        List<IngredientDTO> ingredientDTOS = getIngredientDTOS(newRecipeDTO);
+        return recipeBuilder.recipeBuilder(newRecipeDTO, ingredientDTOS);
+    }
+
+    private List<IngredientDTO> getIngredientDTOS(NewRecipeDTO newRecipeDTO) {
+        return newRecipeDTO.ingredients()
                 .stream()
                 .map(ingredientBuilder::ingredientBuilder)
                 .toList();
-        RecipeDTO newRecipe = recipeBuilder.recipeBuilder(newRecipeDTO, ingredientDTOS);
-        recipeRepository.save(newRecipe);
-        return newRecipe;
     }
 
     public List<RecipeDTO> addRecipes(List<NewRecipeDTO> recipes) throws InvalidRecipeTitleException {

@@ -5,10 +5,14 @@ import com.codecool.elproyectegrandesprint.javatomatams.model.QueryDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.RecipeService;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -22,7 +26,7 @@ public class RecipeController {
     public RecipeController(RecipeService recipeService, ObjectMapper objectMapper) {
         this.recipeService = recipeService;
         this.objectMapper = objectMapper;
-        //addRecipesFromJson();
+        addRecipesFromJson();
     }
 
     @GetMapping(value = "all")
@@ -62,6 +66,17 @@ public class RecipeController {
     @DeleteMapping(value = "/delete/{id}")
     public void deleteRecipeByID(@PathVariable("id") UUID id) {
         recipeService.deleteRecipeByID(id);
+    }
+
+    public List<RecipeDTO> addRecipesFromJson() {
+        try {
+            InputStream inputStream = new ClassPathResource("recipes.json").getInputStream();
+            List<NewRecipeDTO> recipes = objectMapper.readValue(inputStream, new TypeReference<List<NewRecipeDTO>>() {});
+            List<RecipeDTO> addedRecipes = recipeService.addRecipes(recipes);
+            return ResponseEntity.ok(addedRecipes).getBody();
+        } catch (InvalidRecipeTitleException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
