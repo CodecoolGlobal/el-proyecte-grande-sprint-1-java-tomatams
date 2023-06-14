@@ -16,13 +16,24 @@ const Recipe = ({ recipe }) => {
       <div className="recipe-title">{recipe.title}</div>
     </div>
       <div>
-        {recipe.ingredientDTOS.map((ingredient, index) => (
-          <div key={ingredient.id}>
-            <h3>{ingredient.amount}</h3>
-            <h3>{ingredient.unit}</h3>
-            <h3>{ingredient.name}</h3>
-          </div>
-        ))}
+      <table className="recipe-table">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Unit</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {recipe.ingredientDTOS.map((ingredient, index) => (
+            <tr key={ingredient.id}>
+              <td>{ingredient.amount}</td>
+              <td>{ingredient.unit}</td>
+              <td>{ingredient.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       </div>
       <p className="recipe-preparation-text">{recipe.preparation}</p>
       <p>{recipe.creationDate}</p>
