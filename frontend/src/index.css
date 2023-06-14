@@ -62,6 +62,11 @@ button {
   border-radius: 20px;
 }
 
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+}
+
 .header-container {
   display: flex;
   flex-direction: column;
@@ -262,7 +267,7 @@ main {
   align-items: center;
 }
 
-.search-box:hover > .search-txt {
+.search-box:hover>.search-txt {
   width: 600px;
   padding: 0 6px;
 }
@@ -294,7 +299,7 @@ main {
 }
 
 .search-txt {
-  border:none;
+  border: none;
   background: none;
   outline: none;
   float: left;
@@ -308,4 +313,9 @@ main {
 
 .detailed-search {
  display: none;
+}
+
+.recipe-image{
+  width: 130px;
+  object-fit: cover;
 }
