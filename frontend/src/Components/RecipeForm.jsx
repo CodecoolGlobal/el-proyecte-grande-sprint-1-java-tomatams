@@ -1,14 +1,22 @@
+import { useState } from "react";
+import IngredientList from "./Ingredient/IngredientList";
+
 const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
+  const [newIngredients, setnewIngredients] = useState([]);
+
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const entries = [...formData.entries()];
 
-    const recipe = entries.reduce((acc, entry) => {
+    let recipe = entries.reduce((acc, entry) => {
       const [k, v] = entry;
       acc[k] = v;
       return acc;
     }, {});
+
+    recipe.ingredients = newIngredients;
+
     console.log(recipe);
     return onSave(recipe);
   };
@@ -24,6 +32,9 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
             defaultValue={recipe ? recipe.title : null}
           ></input>
         </div>
+        <IngredientList id="ingredients" name="ingredients" addIngredient={setnewIngredients}>
+          {recipe ? recipe.ingredients = newIngredients : null}
+        </IngredientList>
         <div className="form-fields">
           <label htmlFor="cooking-time">Cooking time (minutes)</label>
           <input
