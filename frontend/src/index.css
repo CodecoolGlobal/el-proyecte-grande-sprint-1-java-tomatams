@@ -218,11 +218,6 @@ main {
   border-radius: 5px;
 }
 
-.recipe-content {
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  height: 380px;
-  overflow-y: hidden;
-}
 
 .recipe-container {
   max-width: 1000px;
@@ -289,7 +284,7 @@ main {
   height: 0px;
 }
 
-.search-card.shown  {
+.search-card.shown {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -305,19 +300,21 @@ main {
   z-index: 1;
 
 }
-.search-box.open > .search-txt {
+
+.search-box.open>.search-txt {
   width: 600px;
   padding: 0 6px;
 }
 
-.search-box.open > .detailed-search {
-  display:initial;
+.search-box.open>.detailed-search {
+  display: initial;
 }
-.search-box.open > .search-card.shown {
+
+.search-box.open>.search-card.shown {
   visibility: visible;
 }
 
-.search-box.open > .search-btn {
+.search-box.open>.search-btn {
   background: white;
 }
 
@@ -354,24 +351,67 @@ main {
   width: 0px;
 }
 
-.detailed-search {
- display: none;
- width: 200px;
+.recipe-title {
+  font-size: 30px;
+  line-height: 35px;
+  text-align: center;
+  font-weight: bold;
 }
 
-.recipe-image {
-  width: 130px;
-  object-fit: cover;
+.recipe-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.ingredient-amount-input {
-  width: 60px
+.recipe-table th,
+.recipe-table td {
+  padding: 10px;
+  text-align: left;
 }
 
-.ingredient-unit-input {
-  width: 80px
+.recipe-table thead {
+  background-color: #f2f2f2;
 }
 
-.ingredient-name-input {
-  width: 200px
+.recipe-table th {
+  font-weight: bold;
 }
+
+.recipe-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#X {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .detailed-search {
+    display: none;
+    width: 200px;
+  }
+
+  .deleteDiv {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .recipe-image {
+    width: 130px;
+    object-fit: cover;
+  }
+
+  .ingredient-amount-input {
+    width: 60px
+  }
+
+  .ingredient-unit-input {
+    width: 80px
+  }
+
+  .ingredient-name-input {
+    width: 200px
+  }
