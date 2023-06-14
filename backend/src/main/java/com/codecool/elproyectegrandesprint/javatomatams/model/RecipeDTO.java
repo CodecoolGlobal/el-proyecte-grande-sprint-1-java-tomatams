@@ -2,12 +2,12 @@ package com.codecool.elproyectegrandesprint.javatomatams.model;
 
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -24,6 +24,12 @@ public class RecipeDTO {
     private int cookingTime;
     private String preparation;
     private LocalDate creationDate;
+    @ManyToMany
+    @JoinTable(name = "Ingredient_Recipe",
+            joinColumns = @JoinColumn(name = "recipe_dto_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_dto_id", referencedColumnName = "id"))
+    @JsonManagedReference
+    private List<IngredientDTO> ingredientDTOS;
 
 
     public boolean isThisID(UUID id){
