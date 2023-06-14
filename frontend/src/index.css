@@ -388,30 +388,31 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
-  .detailed-search {
-    display: none;
-    width: 200px;
-  }
+.detailed-search {
+  display: none;
+  width: 200px;
+}
 
-  .deleteDiv {
-    display: flex;
-    justify-content: flex-end;
-  }
+.deleteDiv {
+  display: flex;
+  justify-content: flex-end;
+}
 
-  .recipe-image {
-    width: 130px;
-    object-fit: cover;
-  }
+.recipe-image {
+  width: 130px;
+  object-fit: cover;
+}
 
-  .ingredient-amount-input {
-    width: 60px
-  }
+.ingredient-amount-input {
+  width: 60px
+}
 
-  .ingredient-unit-input {
-    width: 80px
-  }
+.ingredient-unit-input {
+  width: 80px
+}
 
-  .ingredient-name-input {
-    width: 200px
-  }
+.ingredient-name-input {
+  width: 200px
+}
