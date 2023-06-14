@@ -3,6 +3,7 @@ package com.codecool.elproyectegrandesprint.javatomatams.service;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.CookingTime;
 import com.codecool.elproyectegrandesprint.javatomatams.model.QueryDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.IngredientRepository;
 import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.RecipeRepository;
 import com.codecool.elproyectegrandesprint.javatomatams.service.builder.RecipeBuilder;
 import com.codecool.elproyectegrandesprint.javatomatams.model.IngredientDTO;
@@ -12,6 +13,7 @@ import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.RecipeRepo
 import com.codecool.elproyectegrandesprint.javatomatams.service.builder.IngredientBuilder;
 import com.codecool.elproyectegrandesprint.javatomatams.service.builder.RecipeBuilder;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +27,17 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final RecipeBuilder recipeBuilder;
     private final IngredientBuilder ingredientBuilder;
+    private final IngredientRepository ingredientRepository;
 
     @Autowired
-    public RecipeService(RecipeBuilder recipeBuilder, RecipeRepository recipeRepository, IngredientBuilder ingredientBuilder) {
+    public RecipeService(
+            RecipeBuilder recipeBuilder, RecipeRepository recipeRepository,
+            IngredientBuilder ingredientBuilder, IngredientRepository ingredientRepository
+    ) {
         this.recipeBuilder = recipeBuilder;
         this.recipeRepository = recipeRepository;
         this.ingredientBuilder = ingredientBuilder;
+        this.ingredientRepository = ingredientRepository;
     }
 
     public List<RecipeDTO> getAllRecipes() {
@@ -72,9 +79,11 @@ public class RecipeService {
         return recipeList;
     }
 
-    public List<RecipeDTO> deleteRecipeByID(UUID id) {
+    @Transactional
+    public void deleteRecipeByID(UUID id) {
+        List<IngredientDTO> ingredients = getRecipeByID(id).getIngredientDTOS();
+        ingredients.stream().map(ingredient -> ingredientRepository.deleteIngredientDTOById(ingredient.getId()));
         recipeRepository.deleteRecipeDTOByID(id);
-        return getAllRecipes();
     }
 
 }

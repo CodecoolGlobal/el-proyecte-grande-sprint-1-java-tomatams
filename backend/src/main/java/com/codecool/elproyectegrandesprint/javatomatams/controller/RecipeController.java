@@ -9,10 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -22,23 +18,25 @@ import java.util.UUID;
 public class RecipeController {
     private final RecipeService recipeService;
     private final ObjectMapper objectMapper;
+
     public RecipeController(RecipeService recipeService, ObjectMapper objectMapper) {
         this.recipeService = recipeService;
         this.objectMapper = objectMapper;
         //addRecipesFromJson();
     }
+
     @GetMapping(value = "all")
     public List<RecipeDTO> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
 
     @GetMapping(value = "/search")
-    public List<RecipeDTO> getFilteredRecipes(QueryDTO queryDTO){
+    public List<RecipeDTO> getFilteredRecipes(QueryDTO queryDTO) {
         return recipeService.getFilteredRecipes(queryDTO);
     }
 
     @PostMapping(value = "add")
-    public ResponseEntity<RecipeDTO> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO){
+    public ResponseEntity<RecipeDTO> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO) {
         try {
             return ResponseEntity.ok(recipeService.addRecipe(newRecipeDTO));
         } catch (InvalidRecipeTitleException e) {
@@ -62,13 +60,8 @@ public class RecipeController {
 
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<List<RecipeDTO>>  deleteRecipeByID(@PathVariable("id") UUID id) {
-        try {
-            List<RecipeDTO> newrecipeList = recipeService.deleteRecipeByID(id);
-            return ResponseEntity.accepted().build();
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
-        }
+    public void deleteRecipeByID(@PathVariable("id") UUID id) {
+        recipeService.deleteRecipeByID(id);
     }
 
 }
