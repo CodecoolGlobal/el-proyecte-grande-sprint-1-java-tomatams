@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.*;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @Builder
@@ -15,5 +17,5 @@ public class QueryDTO {
     private String search;
     @JsonAlias("cooking-time")
     // @Setter(onMethod = @__(@JsonSetter(value = "cooking-time")))
-    private String cookingTime;
+    private Set<String> cookingTime;
 }
