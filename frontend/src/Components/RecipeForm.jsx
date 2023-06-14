@@ -19,7 +19,8 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
     return onSave(recipe);
   };
 
-  return (
+  return (<main>
+
     <form onSubmit={onSubmit}>
       <div className="form-container">
         <div className="form-fields">
@@ -56,6 +57,7 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
         </div>
       </div>
     </form>
+  </main>
   );
 };
 export default RecipeForm;
