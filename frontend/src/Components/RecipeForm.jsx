@@ -39,7 +39,7 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
             type="number"
             id="cooking-time"
             name="cooking-time"
-          // defaultValue={recipe ? recipe.cooking-time : null}
+            defaultValue={recipe ? recipe.cookingTime : null}
           ></input>
         </div>
         <div className="form-fields">
@@ -49,10 +49,10 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
           </textarea>
         </div>
         <div className="form-field-buttons">
-          <button type="submit" disabled={disabled}>
+          <button className="row-button" type="submit" disabled={disabled}>
             {recipe ? "Update recipe" : "Create recipe"}
           </button>
-          <button onClick={onCancel}>Cancel</button>
+          <button className="row-button" onClick={onCancel}>Cancel</button>
         </div>
       </div>
     </form>
