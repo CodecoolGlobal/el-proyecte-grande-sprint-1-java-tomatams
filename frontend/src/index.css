@@ -302,3 +302,8 @@ main {
   width: 0px;
 
 }
+
+.recipe-image{
+  width: 130px;
+  object-fit: cover;
+}
