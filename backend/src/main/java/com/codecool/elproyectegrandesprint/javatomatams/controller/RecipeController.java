@@ -1,6 +1,7 @@
 package com.codecool.elproyectegrandesprint.javatomatams.controller;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.model.QueryDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.RecipeService;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
@@ -8,6 +9,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -28,9 +33,8 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/search")
-    public List<RecipeDTO> getFilteredRecipes(@RequestParam(value="search") String searchText){
-        System.out.println(searchText);
-        return recipeService.getFilteredRecipes(searchText);
+    public List<RecipeDTO> getFilteredRecipes(QueryDTO queryDTO){
+        return recipeService.getFilteredRecipes(queryDTO);
     }
 
     @PostMapping(value = "add")

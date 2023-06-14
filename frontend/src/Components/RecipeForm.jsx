@@ -14,7 +14,9 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
       acc[k] = v;
       return acc;
     }, {});
+
     recipe.ingredients = newIngredients;
+
     console.log(recipe);
     return onSave(recipe);
   };
@@ -33,6 +35,15 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
         <IngredientList id="ingredients" name="ingredients" addIngredient={setnewIngredients}>
           {recipe ? recipe.ingredients = newIngredients : null}
         </IngredientList>
+        <div className="form-fields">
+          <label htmlFor="cooking-time">Cooking time (minutes)</label>
+          <input
+            type="number"
+            id="cooking-time"
+            name="cooking-time"
+          // defaultValue={recipe ? recipe.cooking-time : null}
+          ></input>
+        </div>
         <div className="form-fields">
           <label htmlFor="preparation">Preparation</label>
           <textarea id="preparation" name="preparation">
