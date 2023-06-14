@@ -16,8 +16,6 @@ const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
     }, {});
 
     recipe.ingredients = newIngredients;
-
-    console.log(recipe);
     return onSave(recipe);
   };
 

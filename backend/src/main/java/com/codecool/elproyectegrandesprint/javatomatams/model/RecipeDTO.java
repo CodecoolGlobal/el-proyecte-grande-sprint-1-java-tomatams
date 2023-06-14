@@ -30,6 +30,7 @@ public class RecipeDTO {
             inverseJoinColumns = @JoinColumn(name = "ingredient_dto_id", referencedColumnName = "id"))
     @JsonManagedReference
     private List<IngredientDTO> ingredientDTOS;
+    private String image;
 
 
     public boolean isThisID(UUID id){

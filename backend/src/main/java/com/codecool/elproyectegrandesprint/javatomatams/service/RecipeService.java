@@ -54,13 +54,15 @@ public class RecipeService {
     }
 
     public RecipeDTO addRecipe(NewRecipeDTO newRecipeDTO) throws InvalidRecipeTitleException {
-        List<IngredientDTO> ingredientDTOS = newRecipeDTO.ingredients()
+        List<IngredientDTO> ingredientDTOS = getIngredientDTOS(newRecipeDTO);
+        return recipeBuilder.recipeBuilder(newRecipeDTO, ingredientDTOS);
+    }
+
+    private List<IngredientDTO> getIngredientDTOS(NewRecipeDTO newRecipeDTO) {
+        return newRecipeDTO.ingredients()
                 .stream()
                 .map(ingredientBuilder::ingredientBuilder)
                 .toList();
-        RecipeDTO newRecipe = recipeBuilder.recipeBuilder(newRecipeDTO, ingredientDTOS);
-        recipeRepository.save(newRecipe);
-        return newRecipe;
     }
 
     public List<RecipeDTO> addRecipes(List<NewRecipeDTO> recipes) throws InvalidRecipeTitleException {
