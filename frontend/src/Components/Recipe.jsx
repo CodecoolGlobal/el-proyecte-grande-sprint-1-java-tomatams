@@ -13,12 +13,14 @@ const Recipe = ({ recipe, onDelete }) => {
 
   return (
     <div className="recipe">    
-    <div style={imageStyle}></div>  
-    <div>
-      <div className="deleteDiv">
-        {onDelete && (<Link to="/"><button type="button" id="X" onClick={() => onDelete(recipe.id) }>X</button></Link>)}
+      <div>
+            <div className="deleteDiv">
+              {onDelete && (<Link to="/"><button type="button" id="X" onClick={() => onDelete(recipe.id) }>X</button></Link>)}
       </div>
-      <img src={recipe.image} className="recipe-image" alt="Recipe" />
+
+      <div style={imageStyle}></div>  
+
+
       <div className="recipe-title">{recipe.title}</div>
 
       <div>
@@ -41,8 +43,12 @@ const Recipe = ({ recipe, onDelete }) => {
         </tbody>
       </table>
       </div>
+
       <p className="recipe-preparation-text">{recipe.preparation}</p>
+
       <p>{recipe.creationDate}</p>
+
+    </div>
     </div>
   )
 }
