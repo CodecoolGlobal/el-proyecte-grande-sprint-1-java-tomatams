@@ -17,7 +17,7 @@ public interface RecipeRepository extends JpaRepository<RecipeDTO, UUID> {
 
     @Query("SELECT r FROM RecipeDTO r WHERE " +
             "(:title IS NULL OR r.title LIKE %:title%) AND" +
-            "(:minCookingTime IS NULL OR r.cookingTime between :minCookingTime and :maxCookingTime)")
+            "(r.cookingTime between :minCookingTime and :maxCookingTime)")
     List<RecipeDTO> findRecipeByTitle(String title, int minCookingTime, int maxCookingTime);
 
 

@@ -30,9 +30,13 @@ public class RecipeService {
 
     public List<RecipeDTO> getFilteredRecipes(QueryDTO queryDTO) {
         String title = queryDTO.getSearch();
+        int minCookingTime = 0;
+        int maxCookingTime = 10000;
+        if(queryDTO.getCookingTime() != null) {
         CookingTime cookingTime = CookingTime.valueOf(queryDTO.getCookingTime());
-        int minCookingTime = cookingTime.getMin();
-        int maxCookingTime = cookingTime.getMax();
+        minCookingTime = cookingTime.getMin();
+        maxCookingTime = cookingTime.getMax();
+        }
         return recipeRepository.findRecipeByTitle(title, minCookingTime, maxCookingTime);
     }
 

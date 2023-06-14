@@ -35,15 +35,12 @@ public class RecipeController {
 
     @GetMapping(value = "/search")
     public List<RecipeDTO> getFilteredRecipes(QueryDTO queryDTO){
-        System.out.println("TITLE " + queryDTO.getSearch()) ;
-        System.out.println("COOKING TIME " + queryDTO.getCookingTime());
         return recipeService.getFilteredRecipes(queryDTO);
     }
 
     @PostMapping(value = "add")
     public ResponseEntity<RecipeDTO> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO){
         try {
-            System.out.println(newRecipeDTO.cookingTime());
             return ResponseEntity.ok(recipeService.addRecipe(newRecipeDTO));
         } catch (InvalidRecipeTitleException e) {
             return ResponseEntity.badRequest().build();
