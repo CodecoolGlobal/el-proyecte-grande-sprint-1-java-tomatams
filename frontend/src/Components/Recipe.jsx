@@ -2,9 +2,17 @@ import React from "react";
 
 const Recipe = ({ recipe }) => {
 
+  const imageStyle = {
+    backgroundImage: `url(${recipe.image})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "300px"
+  };
+
   return (
-    <div>
-      <img src={recipe.image} className="recipe-image" alt="Recipe" />
+    <div className="recipe">    
+    <div style={imageStyle}></div>  
+    <h2>{recipe.title}</h2>
       <div>
         {recipe.ingredientDTOS.map((ingredient, index) => (
           <div key={ingredient.id}>
