@@ -39,7 +39,6 @@ public class RecipeController {
 
     @PostMapping(value = "add")
     public ResponseEntity<RecipeDTO> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO){
-        System.out.println(newRecipeDTO);
         try {
             return ResponseEntity.ok(recipeService.addRecipe(newRecipeDTO));
         } catch (InvalidRecipeTitleException e) {
