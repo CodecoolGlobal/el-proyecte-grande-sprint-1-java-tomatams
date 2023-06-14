@@ -1,10 +1,13 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service;
 
-import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.RecipeRepository;
-import com.codecool.elproyectegrandesprint.javatomatams.service.builder.RecipeBuilder;
+import com.codecool.elproyectegrandesprint.javatomatams.model.IngredientDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.RecipeRepository;
+import com.codecool.elproyectegrandesprint.javatomatams.service.builder.IngredientBuilder;
+import com.codecool.elproyectegrandesprint.javatomatams.service.builder.RecipeBuilder;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,10 +19,13 @@ public class RecipeService {
 
     private final RecipeRepository recipeRepository;
     private final RecipeBuilder recipeBuilder;
+    private final IngredientBuilder ingredientBuilder;
 
-    public RecipeService(RecipeBuilder recipeBuilder, RecipeRepository recipeRepository) {
+    @Autowired
+    public RecipeService(RecipeBuilder recipeBuilder, RecipeRepository recipeRepository, IngredientBuilder ingredientBuilder) {
         this.recipeBuilder = recipeBuilder;
         this.recipeRepository = recipeRepository;
+        this.ingredientBuilder = ingredientBuilder;
     }
 
     public List<RecipeDTO> getAllRecipes() {
@@ -35,9 +41,13 @@ public class RecipeService {
     }
 
     public RecipeDTO addRecipe(NewRecipeDTO newRecipeDTO) throws InvalidRecipeTitleException {
-            RecipeDTO newRecipe = recipeBuilder.recipeBuilder(newRecipeDTO);
-            recipeRepository.save(newRecipe);
-            return newRecipe;
+        List<IngredientDTO> ingredientDTOS = newRecipeDTO.ingredients()
+                .stream()
+                .map(ingredientBuilder::ingredientBuilder)
+                .toList();
+        RecipeDTO newRecipe = recipeBuilder.recipeBuilder(newRecipeDTO, ingredientDTOS);
+        recipeRepository.save(newRecipe);
+        return newRecipe;
     }
 
     public List<RecipeDTO> addRecipes(List<NewRecipeDTO> recipes) throws InvalidRecipeTitleException {
