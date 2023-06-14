@@ -35,7 +35,7 @@ const IngredientList = ({ addIngredient }) => {
     return (
         <div>
             <div>
-                {/* <label>Ingredients</label> */}
+                <label>Ingredients</label>
                 <table>
                     <thead>
                         <tr>
