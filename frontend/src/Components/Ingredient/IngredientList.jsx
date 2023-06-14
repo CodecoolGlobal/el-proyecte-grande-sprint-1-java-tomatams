@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import IngredientPart from "./IngredientPart";
 import IngredientForm from "./IngredientForm";
 
-const IngredientList = ( { addIngredient }) => {
+const IngredientList = ({ addIngredient }) => {
     const [ingredients, setIngredients] = useState([]);
     const [amount, setAmount] = useState(0);
     const [unit, setUnit] = useState("");
@@ -27,10 +27,10 @@ const IngredientList = ( { addIngredient }) => {
         setIngredientName(ingredient.ingredientName);
         console.log("modify" + ingredient);
     };
-    
+
     useEffect(() => {
         addIngredient(ingredients);
-    },[ingredients, addIngredient])
+    }, [ingredients, addIngredient])
 
     return (
         <div>
@@ -41,25 +41,26 @@ const IngredientList = ( { addIngredient }) => {
                         <tr>
                             <th>Amount</th>
                             <th>Unit</th>
-                            <th>Igredient</th>
+                            <th>Ingredient</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {ingredients.map((ingredient, index) => (
-                                <IngredientPart 
-                                    key={index}
-                                    index={index}
-                                    ingredient={ingredient}
-                                    deleteIngredient={(ingredient) => deleteIngredient(ingredient)}  //TODO
-                                    modifyIngredient={(ingredient) => modifyIngredient(ingredient)}  //TODO
-                                />
-                            ))}
+                            <IngredientPart
+                                key={index}
+                                index={index}
+                                ingredient={ingredient}
+                                deleteIngredient={(ingredient) => deleteIngredient(ingredient)}  //TODO
+                                modifyIngredient={(ingredient) => modifyIngredient(ingredient)}  //TODO
+                            />
+                        ))}
+                        <IngredientForm writeIngredient={writeIngredient}
+                            amount={amount} setAmount={setAmount}
+                            unit={unit} setUnit={setUnit}
+                            ingredientName={ingredientName} setIngredientName={setIngredientName} />
                     </tbody>
                 </table>
-                <IngredientForm writeIngredient={writeIngredient}
-                   amount={amount} setAmount={setAmount} 
-                   unit={unit} setUnit={setUnit}
-                   ingredientName={ingredientName} setIngredientName={setIngredientName}/>
             </div>
         </div>
     );

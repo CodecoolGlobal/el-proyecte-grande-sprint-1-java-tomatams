@@ -14,7 +14,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
+  height: 400px;
 }
 
 p {
@@ -23,6 +23,16 @@ p {
 
 label {
   font-size: 20px;
+}
+
+th {
+  font-size: 18px;
+  text-align: left;
+
+}
+
+td {
+  font-size: 18px;
 }
 
 textarea {
@@ -60,6 +70,15 @@ button {
   padding: 10px 15px;
   border: #ff4181;
   border-radius: 20px;
+}
+
+.row-button {
+  margin: 2px 5px;
+}
+
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
 }
 
 .header-container {
@@ -215,6 +234,7 @@ main {
 }
 
 .form-container {
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -224,14 +244,15 @@ main {
 }
 
 .form-fields {
-  width: 30%;
-  margin: 10px;
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .form-field-buttons {
-  width: 30%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
@@ -255,19 +276,52 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
-.search-box:hover > .search-txt {
+.search-card {
+  visibility: hidden;
+  height: 0px;
+}
+
+.search-card.shown {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: white;
+  width: 880px;
+  height: 600px;
+  border-radius: 40px;
+  transition: all 2s;
+  transition-delay: 0.5s;
+  visibility: visible;
+  margin-bottom: -550px;
+  border: #e84118 solid 2px;
+  z-index: 1;
+
+}
+
+.search-box.open>.search-txt {
   width: 600px;
   padding: 0 6px;
 }
 
-.search-box:hover > .search-btn {
+.search-box.open>.detailed-search {
+  display: initial;
+}
+
+.search-box.open>.search-card.shown {
+  visibility: visible;
+}
+
+.search-box.open>.search-btn {
   background: white;
 }
 
 .search-cooking-time {
-  position: relative;
+  padding: 40px;
+  margin-top: 20px;
+  width: 100%;
   top: 43%;
   left: 90%;
 }
@@ -285,7 +339,7 @@ main {
 }
 
 .search-txt {
-  border:none;
+  border: none;
   background: none;
   outline: none;
   float: left;
@@ -297,8 +351,8 @@ main {
   width: 0px;
 }
 
-.recipe-title{
-  font-size:30px;
+.recipe-title {
+  font-size: 30px;
   line-height: 35px;
   text-align: center;
   font-weight: bold;
@@ -334,14 +388,30 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.deleteDiv {
-  display: flex;
-  justify-content: flex-end;
-}
-.recipe-image{
-  width: 130px;
-  object-fit: cover;
-}
+  .detailed-search {
+    display: none;
+    width: 200px;
+  }
 
+  .deleteDiv {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .recipe-image {
+    width: 130px;
+    object-fit: cover;
+  }
+
+  .ingredient-amount-input {
+    width: 60px
+  }
+
+  .ingredient-unit-input {
+    width: 80px
+  }
+
+  .ingredient-name-input {
+    width: 200px
+  }

@@ -6,9 +6,17 @@ import SearchBar from "./SearchBar";
 
 const Header = () => {
   const [active, setActive] = useState("inactive");
+  const [open, setOpen] = useState("closed");
+  const [show, setShow] = useState("closed");
 
   const handleClick = () => {
     setActive(active === "active" ? "inactive" : "active");
+  };
+  const handleOpen = () => {
+    setOpen(open === "open" ? "closed" : "open");
+  };
+  const handleShow = () => {
+    setShow(show === "shown" ? "unshown" : "shown");
   };
   return (
     <header>
@@ -18,7 +26,7 @@ const Header = () => {
         </div>
       </Link>
       <NavigationBar active={active} handleClick={handleClick} />
-      <SearchBar />
+      <SearchBar open={open} handleOpen={handleOpen} show={show} handleShow={handleShow} />
     </header>
   );
 };
