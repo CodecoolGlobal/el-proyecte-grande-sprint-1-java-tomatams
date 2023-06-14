@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const Recipe = ({ recipe, onDelete }) => {
+
   return (
     <div>
       <div className="deleteDiv">
