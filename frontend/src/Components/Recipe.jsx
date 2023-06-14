@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Recipe = ({ recipe }) => {
+
+const Recipe = ({ recipe, onDelete }) => {
 
   const imageStyle = {
     backgroundImage: `url(${recipe.image})`,
@@ -13,8 +15,12 @@ const Recipe = ({ recipe }) => {
     <div className="recipe">    
     <div style={imageStyle}></div>  
     <div>
+      <div className="deleteDiv">
+        {onDelete && (<Link to="/"><button type="button" id="X" onClick={() => onDelete(recipe.id) }>X</button></Link>)}
+      </div>
+      <img src={recipe.image} className="recipe-image" alt="Recipe" />
       <div className="recipe-title">{recipe.title}</div>
-    </div>
+
       <div>
       <table className="recipe-table">
         <thead>
