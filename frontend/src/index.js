@@ -7,6 +7,7 @@ import Layout from './Pages/Layout';
 import RecipeList from './Pages/RecipeList';
 import RecipeCreator from './Pages/RecipeCreator';
 import RecipePage from './Pages/RecipePage';
+import UserCreator from './Pages/UserCreator';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <RecipeList />
+      },
+      {
+        path: "/register",
+        element: <UserCreator />
       }
     ]
   }

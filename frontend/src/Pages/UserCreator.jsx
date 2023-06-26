@@ -1,26 +1,25 @@
 import { useState} from "react";
 import { useNavigate} from "react-router-dom";
-import RecipeForm from "../Components/Recipe/RecipeForm";
+import UserForm from "../Components/User/UserForm";
 
-const createRecipe = (recipe) => {
-  console.log(recipe);
-  return fetch("/recipes/add", {
+const createUser = (user) => {
+  return fetch("/users/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(recipe)
+    body: JSON.stringify(user)
   }).then((res) => res.json());
 };
 
 
-const RecipeCreator = () => {
+const UserCreator = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const handleCreateRecipe = (recipe) => {
+  const handleCreateUser = (user) => {
     setLoading(true);
-    createRecipe(recipe)
+    createUser(user)
     .then(() => {
       navigate("/");
     })
@@ -33,11 +32,11 @@ const RecipeCreator = () => {
   };
 
   return (
-    <RecipeForm
+    <UserForm
     onCancel={()=> navigate("/")}
     disabled={loading}
-    onSave= {handleCreateRecipe}/>
+    onSave= {handleCreateUser}/>
   )
 }
 
-export default RecipeCreator;
+export default UserCreator;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Recipe from "../Components/Recipe";
+import Recipe from "../Components/Recipe/Recipe";
 
 async function fetchRecipe (id) {
   return await fetch(`/recipes/${id}`)
@@ -10,7 +10,7 @@ async function fetchRecipe (id) {
 }
 
 const deleteRecipe = (id) => {
-  return fetch(`/recipes/delete/${id}`, {method: "DELETE"}).then((res) => res.json());
+  return fetch(`/recipes/delete/${id}`, {method: "DELETE"});
 }
 
 const RecipePage = () => {
@@ -20,7 +20,6 @@ const RecipePage = () => {
   const [loading, setLoading] = useState(true);
 
   const handleDelete = (id) => {
-    console.log(id);
     deleteRecipe(id).catch((error) => {
       console.log(error);
     });
