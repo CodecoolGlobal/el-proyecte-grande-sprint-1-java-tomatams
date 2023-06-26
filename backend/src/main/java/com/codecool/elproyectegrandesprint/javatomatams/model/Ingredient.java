@@ -12,14 +12,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class IngredientDTO {
+public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int amount;
     private String unit;
     private String name;
-    @ManyToMany(mappedBy = "ingredientDTOS")
+    @ManyToMany(mappedBy = "ingredients")
     @JsonBackReference
-    private List<RecipeDTO> recipeDTOS;
+    private List<Recipe> recipes;
 }

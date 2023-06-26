@@ -33,7 +33,7 @@ const Recipe = ({ recipe, onDelete }) => {
           </tr>
         </thead>
         <tbody>
-          {recipe.ingredientDTOS.map((ingredient, index) => (
+          {recipe.ingredients.map((ingredient, index) => (
             <tr key={ingredient.id}>
               <td>{ingredient.amount}</td>
               <td>{ingredient.unit}</td>

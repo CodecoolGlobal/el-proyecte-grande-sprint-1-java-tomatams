@@ -1,6 +1,7 @@
 package com.codecool.elproyectegrandesprint.javatomatams.model;
 
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class RecipeDTO {
+public class Recipe {
 
     @Id
     private UUID ID;
@@ -26,12 +27,19 @@ public class RecipeDTO {
     private LocalDate creationDate;
     @ManyToMany
     @JoinTable(name = "Ingredient_Recipe",
-            joinColumns = @JoinColumn(name = "recipe_dto_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_dto_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "recipe_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
     @JsonManagedReference
-    private List<IngredientDTO> ingredientDTOS;
+    private List<Ingredient> ingredients;
     private String image;
 
+    @ManyToOne
+    @JsonBackReference
+    private Client creator;
+
+    @ManyToMany(mappedBy = "favoriteRecipes")
+    @JsonBackReference
+    private List<Client> favorers;
 
     public boolean isThisID(UUID id){
         return ID.equals(id);

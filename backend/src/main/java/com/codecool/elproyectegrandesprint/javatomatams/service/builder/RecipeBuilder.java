@@ -1,8 +1,8 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service.builder;
 
-import com.codecool.elproyectegrandesprint.javatomatams.model.IngredientDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.model.Ingredient;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
-import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.model.Recipe;
 import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,14 +21,14 @@ public class RecipeBuilder {
         this.recipeRepository = recipeRepository;
     }
 
-    public RecipeDTO recipeBuilder(NewRecipeDTO newRecipeDTO, List<IngredientDTO> newIngredientDTOS){
-        RecipeDTO recipe =  RecipeDTO.builder()
+    public Recipe recipeBuilder(NewRecipeDTO newRecipeDTO, List<Ingredient> newIngredients){
+        Recipe recipe =  Recipe.builder()
                 .ID(UUID.randomUUID())
                 .title(newRecipeDTO.title())
                 .cookingTime(newRecipeDTO.cookingTime())
                 .creationDate(LocalDate.now())
                 .preparation(newRecipeDTO.preparation())
-                .ingredientDTOS(newIngredientDTOS)
+                .ingredients(newIngredients)
                 .image(newRecipeDTO.image())
                 .build();
         recipeRepository.save(recipe);

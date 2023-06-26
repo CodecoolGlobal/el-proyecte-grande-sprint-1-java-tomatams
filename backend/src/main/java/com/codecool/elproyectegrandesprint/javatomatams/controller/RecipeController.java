@@ -1,8 +1,8 @@
 package com.codecool.elproyectegrandesprint.javatomatams.controller;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewRecipeDTO;
-import com.codecool.elproyectegrandesprint.javatomatams.model.QueryDTO;
-import com.codecool.elproyectegrandesprint.javatomatams.model.RecipeDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.model.Query;
+import com.codecool.elproyectegrandesprint.javatomatams.model.Recipe;
 import com.codecool.elproyectegrandesprint.javatomatams.service.RecipeService;
 import com.codecool.elproyectegrandesprint.javatomatams.service.exceptions.InvalidRecipeTitleException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -30,17 +30,17 @@ public class RecipeController {
     }
 
     @GetMapping(value = "all")
-    public List<RecipeDTO> getAllRecipes() {
+    public List<Recipe> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
 
     @GetMapping(value = "/search")
-    public List<RecipeDTO> getFilteredRecipes(QueryDTO queryDTO) {
-        return recipeService.getFilteredRecipes(queryDTO);
+    public List<Recipe> getFilteredRecipes(Query query) {
+        return recipeService.getFilteredRecipes(query);
     }
 
     @PostMapping(value = "add")
-    public ResponseEntity<RecipeDTO> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO) {
+    public ResponseEntity<Recipe> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO) {
         try {
             return ResponseEntity.ok(recipeService.addRecipe(newRecipeDTO));
         } catch (InvalidRecipeTitleException e) {
@@ -54,7 +54,7 @@ public class RecipeController {
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<RecipeDTO> getRecipeByID(@PathVariable("id") UUID id) {
+    public ResponseEntity<Recipe> getRecipeByID(@PathVariable("id") UUID id) {
         try {
             return ResponseEntity.ok(recipeService.getRecipeByID(id));
         } catch (NoSuchElementException e) {
@@ -68,11 +68,11 @@ public class RecipeController {
         recipeService.deleteRecipeByID(id);
     }
 
-    public List<RecipeDTO> addRecipesFromJson() {
+    public List<Recipe> addRecipesFromJson() {
         try {
             InputStream inputStream = new ClassPathResource("recipes.json").getInputStream();
             List<NewRecipeDTO> recipes = objectMapper.readValue(inputStream, new TypeReference<List<NewRecipeDTO>>() {});
-            List<RecipeDTO> addedRecipes = recipeService.addRecipes(recipes);
+            List<Recipe> addedRecipes = recipeService.addRecipes(recipes);
             return ResponseEntity.ok(addedRecipes).getBody();
         } catch (InvalidRecipeTitleException | IOException e) {
             throw new RuntimeException(e);
