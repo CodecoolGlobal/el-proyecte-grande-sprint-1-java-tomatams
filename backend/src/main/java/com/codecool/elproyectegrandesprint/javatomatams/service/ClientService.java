@@ -3,7 +3,9 @@ package com.codecool.elproyectegrandesprint.javatomatams.service;
 import com.codecool.elproyectegrandesprint.javatomatams.model.Client;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewClientDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.ClientRepository;
+import com.codecool.elproyectegrandesprint.javatomatams.security.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -11,10 +13,12 @@ import java.util.UUID;
 @Service
 public class ClientService {
     private final ClientRepository clientRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, PasswordEncoder passwordEncoder) {
         this.clientRepository = clientRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void addClient(NewClientDTO newClientDTO) {
@@ -25,7 +29,7 @@ public class ClientService {
         return Client.builder()
                 .ID(UUID.randomUUID())
                 .name(newClientDTO.name())
-                .password(newClientDTO.password())
+                .password(passwordEncoder.encode(newClientDTO.password()))
                 .email(newClientDTO.email())
                 .build();
     }
