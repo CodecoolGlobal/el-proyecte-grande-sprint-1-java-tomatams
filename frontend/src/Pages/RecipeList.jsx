@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import Recipe from "../Components/Recipe";
 import { Link, useLocation } from "react-router-dom";
-import RecipeCard from "../Components/RecipeCard";
+import RecipeCard from "../Components/Recipe/RecipeCard";
 
 const fetchRecipes = () => {
   return fetch(`/recipes/all`).then((res) => res.json());
