@@ -1,5 +1,6 @@
 package com.codecool.elproyectegrandesprint.javatomatams.controller;
 
+import com.codecool.elproyectegrandesprint.javatomatams.model.LogInDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewClientDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,10 @@ public class ClientController {
     @PostMapping("/add")
     public void createClient(@RequestBody NewClientDTO newClientDTO) {
         clientService.addClient(newClientDTO);
+    }
+
+    @PostMapping("/login")
+    public void logInClient(@RequestBody LogInDTO logInDTO) {
+        //clientService.addClient(logInDTO);
     }
 }
