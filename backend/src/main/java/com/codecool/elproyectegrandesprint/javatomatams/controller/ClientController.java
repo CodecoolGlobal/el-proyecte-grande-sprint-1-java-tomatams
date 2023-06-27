@@ -27,6 +27,6 @@ public class ClientController {
 
     @PostMapping("/login")
     public void logInClient(@RequestBody LogInDTO logInDTO) {
-        //clientService.addClient(logInDTO);
+        // TODO - write this endpoint
     }
 }
