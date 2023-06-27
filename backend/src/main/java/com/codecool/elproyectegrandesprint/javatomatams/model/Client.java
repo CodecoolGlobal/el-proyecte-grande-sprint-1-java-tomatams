@@ -17,11 +17,17 @@ public class Client {
 
     @Id
     private UUID ID;
-
+    @Column(nullable = false, unique = true)
     private String name;
 
     private String password;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToMany(mappedBy = "creator")
     @JsonManagedReference
     private List<Recipe> clientsRecipes;
