@@ -17,6 +17,9 @@ const NavigationBar = ({ active, handleClick }) => {
           <Link to="/register">Sign Up</Link>
         </li>
         <li>
+          <Link to="/login">Log In</Link>
+        </li>
+        <li>
           <a href="#">Contact</a>
         </li>
       </div>

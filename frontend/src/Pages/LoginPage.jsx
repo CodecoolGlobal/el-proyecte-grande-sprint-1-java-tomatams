@@ -1,9 +1,9 @@
 import { useState} from "react";
 import { useNavigate} from "react-router-dom";
-import UserForm from "../Components/User/UserRegistrationForm";
+import UserLoginForm from "../Components/User/UserLoginForm";
 
-const createUser = (user) => {
-  return fetch("/users/add", {
+const fetchUser = (user) => {
+  return fetch("/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -13,13 +13,13 @@ const createUser = (user) => {
 };
 
 
-const UserCreator = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const handleCreateUser = (user) => {
+  const handleLogInUser = (user) => {
     setLoading(true);
-    createUser(user)
+    fetchUser(user)
     .then(() => {
       navigate("/");
     })
@@ -32,11 +32,11 @@ const UserCreator = () => {
   };
 
   return (
-    <UserForm
+    <UserLoginForm
     onCancel={()=> navigate("/")}
     disabled={loading}
-    onSave= {handleCreateUser}/>
+    onSave= {handleLogInUser}/>
   )
 }
 
-export default UserCreator;
+export default LoginPage;
