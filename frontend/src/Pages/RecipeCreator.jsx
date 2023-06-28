@@ -1,8 +1,10 @@
-import { useState} from "react";
+import { useState, useEffect, useContext} from "react";
 import { useNavigate} from "react-router-dom";
 import RecipeForm from "../Components/Recipe/RecipeForm";
+import { TokenContext } from "./Layout"; // always copy where token is used
 
-const createRecipe = (recipe) => {
+
+const createRecipe = (recipe, token) => {
   console.log(recipe);
   return fetch("/recipes/add", {
     method: "POST",
@@ -17,10 +19,12 @@ const createRecipe = (recipe) => {
 const RecipeCreator = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const { token, setToken } = useContext(TokenContext); // always copy where token is used
+
 
   const handleCreateRecipe = (recipe) => {
     setLoading(true);
-    createRecipe(recipe)
+    createRecipe(recipe, token)
     .then(() => {
       navigate("/");
     })

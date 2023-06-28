@@ -1,11 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet  } from "react-router-dom";
 import Header from "../Components/Header";
+import { useState, createContext } from "react";
+
+export const TokenContext = createContext();
 
 const Layout = () => {
+  const [token, setToken] = useState("");
+
   return (
     <div className="Layout">
-      <Header />
-      <Outlet />
+      <TokenContext.Provider value={{token, setToken}}>
+        <Header />
+        <Outlet />
+      </TokenContext.Provider>
     </div>
   );
 };
