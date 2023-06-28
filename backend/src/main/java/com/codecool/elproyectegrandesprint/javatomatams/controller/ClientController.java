@@ -2,7 +2,6 @@ package com.codecool.elproyectegrandesprint.javatomatams.controller;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.LogInDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewClientDTO;
-import com.codecool.elproyectegrandesprint.javatomatams.model.testTokenDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,13 +25,9 @@ public class ClientController {
         clientService.addClient(newClientDTO);
     }
 
-    @PostMapping("/login")
+/*    @PostMapping("/login")
     public void logInClient(@RequestBody LogInDTO logInDTO) {
         // TODO - write this endpoint
-    }
+    }*/
 
-    @PostMapping("/logintest")
-    public testTokenDTO logInTestClient(@RequestBody LogInDTO logInDTO) {
-        return new testTokenDTO("kutya");
-    }
 }
