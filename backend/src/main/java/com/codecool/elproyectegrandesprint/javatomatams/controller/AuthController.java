@@ -13,5 +13,6 @@ public class AuthController {
     @PostMapping("/login")
     public void logInClient(@RequestBody LogInDTO logInDTO) {
         // TODO - write this endpoint
+
     }
 }

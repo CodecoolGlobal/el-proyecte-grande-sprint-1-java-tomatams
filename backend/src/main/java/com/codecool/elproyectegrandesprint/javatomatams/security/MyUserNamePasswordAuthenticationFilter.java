@@ -15,21 +15,29 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
+import java.security.Principal;
+import java.util.*;
+
 
 public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final String SECRET_KEY = "SECRET_KEY";
 
-    @Autowired
-    private CustomAuthenticationProvider customAuthenticationProvider;
+    public MyUserNamePasswordAuthenticationFilter(CustomAuthenticationManager customAuthenticationManager) {
+        this.customAuthenticationManager = customAuthenticationManager;
+    }
+
+    private final CustomAuthenticationManager customAuthenticationManager;
+
+
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
@@ -38,7 +46,8 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
         try {
             byte[] inputStreamBytes = StreamUtils.copyToByteArray(request.getInputStream());
             LogInDTO logInDTO = new ObjectMapper().readValue(inputStreamBytes, LogInDTO.class);
-            AuthenticationManager authenticationManager = getAuthenticationManager();
+            System.out.println(logInDTO.name() + " " + logInDTO.password());
+            AuthenticationManager authenticationManager = customAuthenticationManager;
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             logInDTO.name(),
@@ -55,21 +64,19 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-        // TODO - create JWT token
-        //super.successfulAuthentication(request, response, chain, authResult);
-        String token = request.getHeader("Authorization");
-        if (token == null || !token.startsWith("Bearer")) {
-            chain.doFilter(request, response);
-            return;
-        }
 
-        Client principal = (Client) authResult.getPrincipal();
+        String name = String.valueOf(authResult.getPrincipal());
+        String password = String.valueOf(authResult.getCredentials());
+        Collection authorities = authResult.getAuthorities();
+        List roles = new ArrayList<>();
+        Client principal = Client.builder().name(name).password(password).build();
+
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY.getBytes());
 
         String accessToken = JWT.create()
-                .withSubject(principal.getName())
+                .withSubject(name)
                 .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
-                .withClaim("role", principal.getRole().ordinal())
+                .withClaim("role", "USER")
                 .sign(algorithm);
 
         System.out.println(accessToken);
