@@ -14,7 +14,10 @@ const NavigationBar = ({ active, handleClick }) => {
           <a href="#">About us</a>
         </li>
         <li>
-          <a href="#">User</a>
+          <Link to="/register">Sign Up</Link>
+        </li>
+        <li>
+          <Link to="/login">Log In</Link>
         </li>
         <li>
           <a href="#">Contact</a>

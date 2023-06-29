@@ -1,6 +1,6 @@
 package com.codecool.elproyectegrandesprint.javatomatams.service.builder;
 
-import com.codecool.elproyectegrandesprint.javatomatams.model.IngredientDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.model.Ingredient;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewIngredientDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,14 @@ public class IngredientBuilder{
         this.ingredientRepository = ingredientRepository;
     }
 
-    public IngredientDTO ingredientBuilder(NewIngredientDTO newIngredientDTO) {
-        IngredientDTO ingredientDTO = IngredientDTO
+    public Ingredient ingredientBuilder(NewIngredientDTO newIngredientDTO) {
+        Ingredient ingredient = Ingredient
                 .builder()
                 .name(newIngredientDTO.ingredientName())
                 .amount(newIngredientDTO.amount())
                 .unit(newIngredientDTO.unit())
                 .build();
-        ingredientRepository.save(ingredientDTO);
-        return ingredientDTO;
+        ingredientRepository.save(ingredient);
+        return ingredient;
     }
 }

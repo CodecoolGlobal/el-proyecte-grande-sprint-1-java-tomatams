@@ -33,43 +33,43 @@ public class RecipeService {
         this.ingredientRepository = ingredientRepository;
     }
 
-    public List<RecipeDTO> getAllRecipes() {
+    public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
 
-    public List<RecipeDTO> getFilteredRecipes(QueryDTO queryDTO) {
-        String title = queryDTO.getSearch();
+    public List<Recipe> getFilteredRecipes(Query query) {
+        String title = query.getSearch();
         int minCookingTime = 0;
         int maxCookingTime = 10000;
 
-        if(queryDTO.getCookingTime() != null) {
-        Set<CookingTime> cookingTimes = queryDTO.getCookingTime().stream().map(CookingTime::valueOf).collect(Collectors.toSet());
+        if(query.getCookingTime() != null) {
+        Set<CookingTime> cookingTimes = query.getCookingTime().stream().map(CookingTime::valueOf).collect(Collectors.toSet());
         minCookingTime = cookingTimes.stream().min(Comparator.comparing(CookingTime::getMin)).get().getMin();
         maxCookingTime = cookingTimes.stream().max(Comparator.comparing(CookingTime::getMax)).get().getMax();
         }
         return recipeRepository.findRecipeByTitle(title, minCookingTime, maxCookingTime);
     }
 
-    public RecipeDTO getRecipeByID(UUID id) {
+    public Recipe getRecipeByID(UUID id) {
         return recipeRepository.getRecipeDTOByID(id);
     }
 
-    public RecipeDTO addRecipe(NewRecipeDTO newRecipeDTO) throws InvalidRecipeTitleException {
-        List<IngredientDTO> ingredientDTOS = getIngredientDTOS(newRecipeDTO);
-        return recipeBuilder.recipeBuilder(newRecipeDTO, ingredientDTOS);
+    public Recipe addRecipe(NewRecipeDTO newRecipeDTO) throws InvalidRecipeTitleException {
+        List<Ingredient> ingredients = getIngredients(newRecipeDTO);
+        return recipeBuilder.recipeBuilder(newRecipeDTO, ingredients);
     }
 
-    private List<IngredientDTO> getIngredientDTOS(NewRecipeDTO newRecipeDTO) {
+    private List<Ingredient> getIngredients(NewRecipeDTO newRecipeDTO) {
         return newRecipeDTO.ingredients()
                 .stream()
                 .map(ingredientBuilder::ingredientBuilder)
                 .toList();
     }
 
-    public List<RecipeDTO> addRecipes(List<NewRecipeDTO> recipes) throws InvalidRecipeTitleException {
-        List<RecipeDTO> recipeList = new ArrayList<>();
+    public List<Recipe> addRecipes(List<NewRecipeDTO> recipes) throws InvalidRecipeTitleException {
+        List<Recipe> recipeList = new ArrayList<>();
         for (NewRecipeDTO recipe : recipes) {
-            RecipeDTO addedRecipe = addRecipe(recipe);
+            Recipe addedRecipe = addRecipe(recipe);
             recipeList.add(addedRecipe);
         }
         return recipeList;
@@ -77,8 +77,8 @@ public class RecipeService {
 
     @Transactional
     public void deleteRecipeByID(UUID id) {
-        List<IngredientDTO> ingredients = getRecipeByID(id).getIngredientDTOS();
-        ingredients.stream().map(ingredient -> ingredientRepository.deleteIngredientDTOById(ingredient.getId()));
+        List<Ingredient> ingredients = getRecipeByID(id).getIngredients();
+        ingredients.stream().map(ingredient -> ingredientRepository.deleteIngredientById(ingredient.getId()));
         recipeRepository.deleteRecipeDTOByID(id);
     }
 

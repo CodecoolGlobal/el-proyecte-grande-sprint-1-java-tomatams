@@ -1,5 +1,5 @@
 import { useState } from "react";
-import IngredientList from "./Ingredient/IngredientList";
+import IngredientList from "../Ingredient/IngredientList";
 
 const RecipeForm = ({ recipe, onSave, disabled, onCancel }) => {
   const [newIngredients, setnewIngredients] = useState([]);
