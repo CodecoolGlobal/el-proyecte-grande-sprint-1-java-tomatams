@@ -26,7 +26,7 @@ public class RecipeController {
     public RecipeController(RecipeService recipeService, ObjectMapper objectMapper) {
         this.recipeService = recipeService;
         this.objectMapper = objectMapper;
-        addRecipesFromJson();
+//        addRecipesFromJson();
     }
 
     @GetMapping(value = "all")

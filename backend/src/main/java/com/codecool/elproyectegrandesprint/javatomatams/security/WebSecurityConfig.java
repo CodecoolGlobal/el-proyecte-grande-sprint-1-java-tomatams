@@ -4,6 +4,7 @@ import com.codecool.elproyectegrandesprint.javatomatams.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -31,18 +32,22 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-//                                .requestMatchers("/users/add")
-//                                .hasRole("ADMIN")
-                .requestMatchers("/**")
-                .permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/recipes/delete/{id}")
+                        .hasRole("ADMIN")
+                        .requestMatchers("/recipes/add")
+                        .hasRole("USER")
+                        .requestMatchers("/", "/recipes/all", "/recipes/search", "/users/add", "/recipes/{id}")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()
                 )
-                .addFilterAfter( new MyUserNamePasswordAuthenticationFilter(authenticationManager), ExceptionTranslationFilter.class)
+                .addFilterAfter(new MyUserNamePasswordAuthenticationFilter(authenticationManager), ExceptionTranslationFilter.class)
                 .addFilterAfter(bearerTokenAuthenticatingFilter, ExceptionTranslationFilter.class)
         ;
-    return http.build();
+        return http.build();
     }
 
 }

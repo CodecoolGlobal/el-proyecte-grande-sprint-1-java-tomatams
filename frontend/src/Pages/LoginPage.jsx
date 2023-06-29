@@ -27,7 +27,8 @@ const LoginPage = () => {
     setLoading(true);
     loginUser(user)
       .then((res) => {
-        const headerToken = res.headers.get("Authorization")
+        const headerToken = res.headers.get("Authorization");
+        localStorage.setItem('token', headerToken);
         setToken(headerToken)
       })
       .then(() => {

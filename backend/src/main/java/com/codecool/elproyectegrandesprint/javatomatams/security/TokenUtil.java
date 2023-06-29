@@ -38,6 +38,7 @@ public class TokenUtil {
             return clientDetailsService.loadUserByUsername(clientName);
 
         } catch (JwtException | ClassCastException e) {
+            System.out.println(e);
             return null;
         }
     }

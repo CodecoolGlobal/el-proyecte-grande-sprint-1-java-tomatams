@@ -73,7 +73,7 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
 
         String accessToken = JWT.create()
                 .withSubject(name)
-                .withExpiresAt(new Date(System.currentTimeMillis() + 2 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
                 .withClaim("role", roles)
                 .sign(algorithm);
 

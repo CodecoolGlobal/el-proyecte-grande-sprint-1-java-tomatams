@@ -8,9 +8,9 @@ const Layout = () => {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    console.log(token);
-    localStorage.setItem('token', JSON.stringify(token));
-  }, [token]);
+    setToken(localStorage.getItem("token"))
+    console.log("TOKEN ", token);
+  }, [token])
 
   return (
     <div className="Layout">
