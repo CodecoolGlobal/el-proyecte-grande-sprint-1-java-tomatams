@@ -9,7 +9,6 @@ const Layout = () => {
 
   useEffect(() => {
     setToken(localStorage.getItem("token"))
-    console.log("TOKEN ", token);
   }, [token])
 
   return (

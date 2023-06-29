@@ -6,7 +6,6 @@ import { TokenContext } from "./Layout"; // always copy where token is used
 
 
 const loginUser = (user) => {
-  console.log(user);
   return fetch("/login", {
     method: "POST",
     headers: {
