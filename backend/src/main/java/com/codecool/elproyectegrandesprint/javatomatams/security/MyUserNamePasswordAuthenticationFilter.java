@@ -5,20 +5,18 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.codecool.elproyectegrandesprint.javatomatams.model.Client;
 import com.codecool.elproyectegrandesprint.javatomatams.model.LogInDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
@@ -26,7 +24,7 @@ import java.util.*;
 
 public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private final String SECRET_KEY = "SECRET_KEY";
+    private final String SECRET_KEY = "LOPOTTLACI";
 
     private final CustomAuthenticationManager customAuthenticationManager;
 
@@ -79,9 +77,21 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
                 .withClaim("role", roles)
                 .sign(algorithm);
 
+       //String accessToken = generateToken(name, roles, algorithm);
         System.out.println("accessToken: " + accessToken);
 
         response.setHeader("Authorization", "Bearer " + accessToken);
     }
+
+    public String generateToken (String name, List<String> roles, Algorithm algorithm) {
+        Claims claims = Jwts.claims().setSubject(name);
+        claims.put("role", roles);
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .compact();
+    }
+
 
 }

@@ -22,20 +22,26 @@ public class WebSecurityConfig {
 
     private final CustomAuthenticationManager authenticationManager;
 
+    private final BearerTokenAuthenticatingFilter bearerTokenAuthenticatingFilter;
+
     @Autowired
-    public WebSecurityConfig(CustomAuthenticationManager authenticationManager) {
+    public WebSecurityConfig(CustomAuthenticationManager authenticationManager, BearerTokenAuthenticatingFilter bearerTokenAuthenticatingFilter) {
         this.authenticationManager = authenticationManager;
+        this.bearerTokenAuthenticatingFilter = bearerTokenAuthenticatingFilter;
     }
 
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/**", "/users/add")
+                                .requestMatchers("/users/add")
+                                .hasRole("ADMIN")
+                .requestMatchers("/**")
                 .permitAll()
                 )
                 .addFilterAfter( new MyUserNamePasswordAuthenticationFilter(authenticationManager), ExceptionTranslationFilter.class)
-                ;
+                .addFilterAfter(bearerTokenAuthenticatingFilter, ExceptionTranslationFilter.class)
+        ;
     return http.build();
     }
 
