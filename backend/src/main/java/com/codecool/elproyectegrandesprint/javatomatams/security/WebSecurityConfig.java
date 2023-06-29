@@ -28,25 +28,6 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-
-        UserDetails admin = User.withUsername("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles(String.valueOf(Role.ADMIN))
-                .build();
-
-        UserDetails test = User.withUsername("test")
-                .password(passwordEncoder().encode("test"))
-                .roles(String.valueOf(Role.USER))
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, test);
-    }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-    @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
