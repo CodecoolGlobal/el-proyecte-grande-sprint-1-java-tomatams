@@ -34,8 +34,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                                .requestMatchers("/users/add")
-                                .hasRole("ADMIN")
+//                                .requestMatchers("/users/add")
+//                                .hasRole("ADMIN")
                 .requestMatchers("/**")
                 .permitAll()
                 )
