@@ -35,8 +35,6 @@ public class BearerTokenAuthenticatingFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String token = request.getHeader("Authorization");
-        System.out.println("Történikvalami: " + "tokenellenőrzés");
-        System.out.println(token);
 
         if (token == null || !token.startsWith("Bearer")) {
             // this is not a bearer token based authorization, so we let other filters
@@ -46,7 +44,6 @@ public class BearerTokenAuthenticatingFilter extends OncePerRequestFilter {
         }
 
         UserDetails client = tokenUtil.parseToken(token);
-        System.out.println("Történikvalami: " + client);
 
         if (client == null) {
             throw new BadCredentialsException("invalid token found in Authorization header");

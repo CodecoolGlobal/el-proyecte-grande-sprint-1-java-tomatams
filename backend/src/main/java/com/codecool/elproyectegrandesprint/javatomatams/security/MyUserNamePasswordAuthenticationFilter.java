@@ -58,7 +58,6 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
                                             Authentication authResult) throws IOException, ServletException {
 
         String name = String.valueOf(authResult.getPrincipal());
-        String password = String.valueOf(authResult.getCredentials());
 
         Collection<? extends GrantedAuthority> authorities = authResult.getAuthorities();
         List<String> roles = new ArrayList<>(authorities.size());
@@ -66,9 +65,12 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
             roles.add(authority.getAuthority());
         }
 
-        System.out.println("Roles: " + roles);
-        Client principal = Client.builder().name(name).password(password).build();
+        String accessToken = getJwtToken(name, roles);
 
+        response.setHeader("Authorization", "Bearer " + accessToken);
+    }
+
+    private String getJwtToken(String name, List<String> roles) {
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY.getBytes());
 
         String accessToken = JWT.create()
@@ -76,21 +78,7 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
                 .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
                 .withClaim("role", roles)
                 .sign(algorithm);
-
-       //String accessToken = generateToken(name, roles, algorithm);
-        System.out.println("accessToken: " + accessToken);
-
-        response.setHeader("Authorization", "Bearer " + accessToken);
-    }
-
-    public String generateToken (String name, List<String> roles, Algorithm algorithm) {
-        Claims claims = Jwts.claims().setSubject(name);
-        claims.put("role", roles);
-
-        return Jwts.builder()
-                .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
-                .compact();
+        return accessToken;
     }
 
 
