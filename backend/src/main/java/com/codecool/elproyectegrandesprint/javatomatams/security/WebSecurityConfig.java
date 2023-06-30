@@ -1,34 +1,28 @@
 package com.codecool.elproyectegrandesprint.javatomatams.security;
 
-import com.codecool.elproyectegrandesprint.javatomatams.model.Role;
+import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity(debug = false)
 public class WebSecurityConfig {
 
-    private final CustomAuthenticationManager authenticationManager;
-
-    private final BearerTokenAuthenticatingFilter bearerTokenAuthenticatingFilter;
+    private final ClientRepository clientRepository;
 
     @Autowired
-    public WebSecurityConfig(CustomAuthenticationManager authenticationManager, BearerTokenAuthenticatingFilter bearerTokenAuthenticatingFilter) {
-        this.authenticationManager = authenticationManager;
-        this.bearerTokenAuthenticatingFilter = bearerTokenAuthenticatingFilter;
+    public WebSecurityConfig(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
     }
 
     @Bean
@@ -44,9 +38,37 @@ public class WebSecurityConfig {
                         .anyRequest()
                         .authenticated()
                 )
-                .addFilterAfter(new MyUserNamePasswordAuthenticationFilter(authenticationManager), ExceptionTranslationFilter.class)
-                .addFilterAfter(bearerTokenAuthenticatingFilter, ExceptionTranslationFilter.class)
+                .addFilterAfter(myUserNamePasswordAuthenticationFilter(), ExceptionTranslationFilter.class)
+                .addFilterAfter(bearerTokenAuthenticatingFilter(), ExceptionTranslationFilter.class)
         ;
         return http.build();
+    }
+    @Bean
+    public AuthenticationManager customAuthenticationManager(){
+        return new CustomAuthenticationManager(clientDetailsService(), passwordEncoder());
+    }
+
+    @Bean
+    public MyUserNamePasswordAuthenticationFilter myUserNamePasswordAuthenticationFilter (){
+        return new MyUserNamePasswordAuthenticationFilter(customAuthenticationManager());
+    }
+
+    @Bean
+    public ClientDetailsService clientDetailsService(){
+        return new ClientDetailsService(clientRepository);
+    }
+
+    @Bean
+    public BearerTokenAuthenticatingFilter bearerTokenAuthenticatingFilter(){
+        return new BearerTokenAuthenticatingFilter(tokenUtil());
+    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public TokenUtil tokenUtil (){
+        return new TokenUtil(clientDetailsService());
     }
 }

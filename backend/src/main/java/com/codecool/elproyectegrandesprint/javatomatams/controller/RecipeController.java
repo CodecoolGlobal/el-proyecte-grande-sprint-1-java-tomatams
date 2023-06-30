@@ -26,7 +26,7 @@ public class RecipeController {
     public RecipeController(RecipeService recipeService, ObjectMapper objectMapper) {
         this.recipeService = recipeService;
         this.objectMapper = objectMapper;
-//        addRecipesFromJson();
+        //addRecipesFromJson();
     }
 
     @GetMapping(value = "all")
@@ -39,7 +39,7 @@ public class RecipeController {
         return recipeService.getFilteredRecipes(query);
     }
 
-    @PostMapping(value = "add")
+    @PostMapping(value = "/add")
     public ResponseEntity<Recipe> postRecipes(@RequestBody NewRecipeDTO newRecipeDTO) {
         try {
             return ResponseEntity.ok(recipeService.addRecipe(newRecipeDTO));

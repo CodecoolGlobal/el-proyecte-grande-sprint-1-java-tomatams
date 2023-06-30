@@ -17,14 +17,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.List;
 
-@Component
 public class BearerTokenAuthenticatingFilter extends OncePerRequestFilter {
 
     private final String SECRET_KEY = "LOPOTTLACI";
 
     private final TokenUtil tokenUtil;
 
-    @Autowired
     public BearerTokenAuthenticatingFilter(TokenUtil tokenUtil) {
         this.tokenUtil = tokenUtil;
     }

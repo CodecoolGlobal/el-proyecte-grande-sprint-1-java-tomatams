@@ -2,16 +2,13 @@ package com.codecool.elproyectegrandesprint.javatomatams.security;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.codecool.elproyectegrandesprint.javatomatams.model.Client;
 import com.codecool.elproyectegrandesprint.javatomatams.model.LogInDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -26,9 +23,10 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
 
     private final String SECRET_KEY = "LOPOTTLACI";
 
-    private final CustomAuthenticationManager customAuthenticationManager;
+    private final AuthenticationManager customAuthenticationManager;
 
-    public MyUserNamePasswordAuthenticationFilter(CustomAuthenticationManager customAuthenticationManager) {
+    public MyUserNamePasswordAuthenticationFilter(AuthenticationManager customAuthenticationManager) {
+        super(customAuthenticationManager);
         this.customAuthenticationManager = customAuthenticationManager;
     }
 

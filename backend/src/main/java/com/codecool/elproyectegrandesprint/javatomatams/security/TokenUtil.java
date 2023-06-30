@@ -12,13 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-@Component
 public class TokenUtil {
     private final String SECRET_KEY = "LOPOTTLACI";
 
     private ClientDetailsService clientDetailsService;
 
-    @Autowired
     public TokenUtil(ClientDetailsService clientDetailsService) {
         this.clientDetailsService = clientDetailsService;
     }

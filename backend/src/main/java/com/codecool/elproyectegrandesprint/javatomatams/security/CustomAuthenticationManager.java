@@ -10,15 +10,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-@Component
 public class CustomAuthenticationManager implements AuthenticationManager {
 
     private final ClientDetailsService clientDetailsService;
 
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public CustomAuthenticationManager(ClientDetailsService clientDetailsService, PasswordEncoder passwordEncoder) {
+    public CustomAuthenticationManager(ClientDetailsService clientDetailsService,
+                                       PasswordEncoder passwordEncoder) {
         this.clientDetailsService = clientDetailsService;
         this.passwordEncoder = passwordEncoder;
     }
