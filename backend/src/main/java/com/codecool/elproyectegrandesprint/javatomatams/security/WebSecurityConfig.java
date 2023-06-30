@@ -62,6 +62,7 @@ public class WebSecurityConfig {
     public BearerTokenAuthenticatingFilter bearerTokenAuthenticatingFilter(){
         return new BearerTokenAuthenticatingFilter(tokenUtil());
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
