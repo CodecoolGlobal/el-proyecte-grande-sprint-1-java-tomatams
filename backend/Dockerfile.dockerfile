@@ -1,9 +1,9 @@
 ### STAGE 1: Build ###
-FROM maven:3.9.2-alpine-jdk-17-slim AS build
+FROM maven:3.9.3-eclipse-temurin-17 AS build
 WORKDIR /maven_build
 COPY pom.xml /maven_build
 COPY src /maven_build/src
-RUN mvn mvn -f pom.xml clean package
+RUN mvn -f pom.xml clean package
 
 ### STAGE 2: Run ###
 FROM openjdk:17-alpine
