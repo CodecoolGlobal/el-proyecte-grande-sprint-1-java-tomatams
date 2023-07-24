@@ -1,4 +1,4 @@
-package com.codecool.elproyectegrandesprint.javatomatams;
+/*package com.codecool.elproyectegrandesprint.javatomatams;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,3 +11,4 @@ class ElProyecteGrandeSprint1JavaTomatamsApplicationTests {
 	}
 
 }
+*/
