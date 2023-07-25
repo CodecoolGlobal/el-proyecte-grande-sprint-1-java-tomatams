@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../Logo.png";
+import Logo from "../logo.png";
 import NavigationBar from "./NavigationBar";
 import SearchBar from "./SearchBar";
 

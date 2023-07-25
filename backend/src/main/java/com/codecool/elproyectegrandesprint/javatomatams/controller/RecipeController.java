@@ -70,7 +70,7 @@ public class RecipeController {
 
     public List<Recipe> addRecipesFromJson() {
         try {
-            InputStream inputStream = new ClassPathResource("recipes.json").getInputStream();
+            InputStream inputStream = new ClassPathResource("static/recipes.json").getInputStream();
             List<NewRecipeDTO> recipes = objectMapper.readValue(inputStream, new TypeReference<List<NewRecipeDTO>>() {});
             List<Recipe> addedRecipes = recipeService.addRecipes(recipes);
             return ResponseEntity.ok(addedRecipes).getBody();

@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
 
 @Configuration
-@EnableWebSecurity(debug = false)
+@EnableWebSecurity(debug = true)
 public class WebSecurityConfig {
 
     private final ClientRepository clientRepository;
@@ -34,6 +34,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/recipes/add")
                         .hasRole("USER")
                         .requestMatchers("/", "/recipes/all", "/recipes/search", "/users/add", "/recipes/{id}")
+                        .permitAll()
+                        .requestMatchers("/index.html", "/static/css/**", "/static/js/**", "/static/media/logo.68cdc8e624f4a6f520d9.png" )
                         .permitAll()
                         .anyRequest()
                         .authenticated()

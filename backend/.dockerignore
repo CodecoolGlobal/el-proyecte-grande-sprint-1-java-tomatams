@@ -1,6 +1,6 @@
 .idea
 .dockerignore
 **/*.log
-Dockerfile
+Dockerfile.dockerfile
 .git
 .gitignore
