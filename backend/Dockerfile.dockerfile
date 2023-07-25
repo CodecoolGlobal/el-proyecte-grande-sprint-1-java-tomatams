@@ -8,7 +8,7 @@ RUN mvn -f pom.xml clean package
 ### STAGE 2: Run ###
 FROM openjdk:17-alpine
 VOLUME /tmp
-EXPOSE 8081
+EXPOSE 8080
 
 COPY --from=build /maven_build/target/el-proyecte-grande-sprint-1-java-tomatams-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
