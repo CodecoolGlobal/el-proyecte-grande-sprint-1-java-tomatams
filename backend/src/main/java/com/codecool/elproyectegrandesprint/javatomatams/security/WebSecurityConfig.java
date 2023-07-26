@@ -35,7 +35,7 @@ public class WebSecurityConfig {
                         .hasRole("USER")
                         .requestMatchers("/", "/recipes/all", "/recipes/search", "/users/add", "/recipes/{id}")
                         .permitAll()
-                        .requestMatchers("/index.html", "/static/css/**", "/static/js/**", "/static/media/logo.68cdc8e624f4a6f520d9.png" )
+                        .requestMatchers("/index.html", "/static/css/**", "/static/js/**", "/static/media/**" )
                         .permitAll()
                         .anyRequest()
                         .authenticated()
