@@ -17,7 +17,7 @@ COPY --from=react-build /react_build/build ./src/main/resources/public
 RUN mvn -f pom.xml clean package
 
 ### STAGE 2: Run ###
-FROM openjdk:17-alpine
+FROM eclipse-temurin:17.0.8_7-jre
 VOLUME /tmp
 EXPOSE 8080
 COPY --from=java-build /maven_build/target/el-proyecte-grande-sprint-1-java-tomatams-0.0.1-SNAPSHOT.jar app.jar
