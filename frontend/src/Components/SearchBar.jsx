@@ -23,6 +23,13 @@ const SearchBar = ({ open, handleOpen, show, handleShow }) => {
     });
   };
 
+  const handleDetailedSearch = () => {
+    handleOpen();
+    if(show === "shown") {
+      handleShow();
+    }
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -30,7 +37,7 @@ const SearchBar = ({ open, handleOpen, show, handleShow }) => {
           <div className={`search-box ${open}`} >
             <input className="search-txt" name="search" placeholder="search" />
             <span className="search-btn">
-              <FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleOpen} />
+              <FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleDetailedSearch} />
             </span>
             <button type="button" className="detailed-search row-button" onClick={handleShow}>detailed search
               <FontAwesomeIcon icon={faCaretDown} />
