@@ -1,14 +1,13 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserLoginForm from "../Components/User/UserLoginForm";
 
 import { TokenContext } from "./Layout"; // always copy where token is used
 
-
-const loginUser = (user) => {
+const editUser = (user) => {
   console.log(user);
-  return fetch("/login", {
-    method: "POST",
+  return fetch("/users/edit/", {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
@@ -16,16 +15,15 @@ const loginUser = (user) => {
   });
 };
 
-
-const LoginPage = () => {
+const ProfilePage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const { setToken } = useContext(TokenContext); // always copy where token is used
 
-  const handleLogInUser = (user) => {
+  const handleEditUser = (user) => {
     setLoading(true);
-    loginUser(user)
+    editUser(user)
       .then((res) => {
         const headerToken = res.headers.get("Authorization");
         localStorage.setItem('token', headerToken);
@@ -42,12 +40,13 @@ const LoginPage = () => {
       })
   };
 
+
   return (
     <UserLoginForm
       onCancel={() => navigate("/")}
       disabled={loading}
-      onSave={handleLogInUser} />
+      onSave={handleEditUser} />
   )
 }
 
-export default LoginPage;
+export default ProfilePage;
