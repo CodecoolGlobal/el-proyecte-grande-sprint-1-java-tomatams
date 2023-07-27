@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../images/logo.png";
+import Logo from "../images/Logo.png";
 import NavigationBar from "./NavigationBar";
 import SearchBar from "./SearchBar";
 import ProfileNavBar from "./SignOut/ProfileNavBar";

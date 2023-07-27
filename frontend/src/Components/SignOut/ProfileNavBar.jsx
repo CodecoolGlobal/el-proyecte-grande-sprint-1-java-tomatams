@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../../Pages/Layout"; // always copy where token is used
 import { Link } from "react-router-dom";
-import Logout from "../../images/logout.png"
+import Logout from "../../images/Logout.png"
 
 const ProfileNavBar = ({ logout }) => {
     const { token } = useContext(TokenContext);
