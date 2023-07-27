@@ -52,7 +52,7 @@ public class WebSecurityConfig {
 
     @Bean
     public MyUserNamePasswordAuthenticationFilter myUserNamePasswordAuthenticationFilter (){
-        return new MyUserNamePasswordAuthenticationFilter(customAuthenticationManager());
+        return new MyUserNamePasswordAuthenticationFilter(customAuthenticationManager(), clientRepository);
     }
 
     @Bean
