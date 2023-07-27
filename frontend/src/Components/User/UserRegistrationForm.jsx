@@ -16,14 +16,14 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
       acc[k] = v;
       return acc;
     }, {});
-    if(isValidPassword){
+    if (isValidPassword) {
       return onSave(user);
     } else {
       setErrorMessage("The passwords do not match, please correct them")
     }
   };
 
-  const validatePassWord = (e) =>{
+  const validatePassWord = (e) => {
     const newPassWord = e.target.value;
 
     const hasUppercase = /[A-Z]/.test(newPassWord);
@@ -31,34 +31,36 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
     const hasNumber = /[0-9]/.test(newPassWord);
     const newPassWordLength = newPassWord.length >= 5;
 
-    if (!newPassWordLength) {
-      setErrorMessage("The password is not long enough!");
+    if (!hasNumber) {
+      setErrorMessage("The password has to contain one number!");
       setIsValidPassword(false);
     } else if (!hasUppercase) {
-      setErrorMessage("The password has contain one upperCase letter!");
+      setErrorMessage("The password has to contain one upperCase letter!");
       setIsValidPassword(false);
-    } else if (!hasLowercase){
-      setErrorMessage("The password has contain one lowerCase letter!");
+    } else if (!hasLowercase) {
+      setErrorMessage("The password has to contain one lowerCase letter!");
       setIsValidPassword(false);
-    }else if (!hasNumber){
-      setErrorMessage("The password has contain one number!");
-      setIsValidPassword(false);    
-    } else {
+    } else if (!newPassWordLength) {
+      setErrorMessage("The password is not long enough!");
+      setIsValidPassword(false);
+    }
+
+    if (hasNumber && hasUppercase && hasLowercase && newPassWordLength) {
       setErrorMessage("");
       setIsValidPassword(true);
     }
     setPassWord(newPassWord)
   }
 
-  const validateConfirmPassWord = (e) =>{
-      let confPassword = e.target.value;
-      if(passWord === confPassword){
-        setErrorMessage("")
-        setIsValidPassword(true);
-      } else {
-        setErrorMessage("passwords do not match")
-        setIsValidPassword(false);
-      }
+  const validateConfirmPassWord = (e) => {
+    let confPassword = e.target.value;
+    if (passWord === confPassword) {
+      setErrorMessage("")
+      setIsValidPassword(true);
+    } else {
+      setErrorMessage("passwords do not match")
+      setIsValidPassword(false);
+    }
   }
 
   useEffect(() => {
@@ -75,29 +77,36 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
             id="name"
             name="name"
             defaultValue={user ? user.name : null}
+            disabled={user}
           ></input>
         </div>
-    
+
+        {user && <div className="form-fields">
+          <label htmlFor="old_password">Old password</label>
+          <input
+            type="password"
+            id="old_password"
+            name="old_password"
+          ></input>
+        </div>}
 
         <div className="form-fields">
           <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             onChange={validatePassWord}
-            defaultValue={user ? user.password : null}
           ></input>
         </div>
 
         <div className="form-fields">
           <label htmlFor="confirm_password">Confirm password</label>
           <input
-            type="text"
+            type="password"
             id="conf_password"
             name="conf_password"
             onChange={validateConfirmPassWord}
-            defaultValue={user ? user.conf_password : null}
           ></input>
         </div>
 
@@ -113,9 +122,12 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
 
         <div className="form-fields">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email">
-            {user ? user.email : null}
-          </input>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            defaultValue={user ? user.email : null}
+          />
         </div>
 
         <div>
@@ -134,3 +146,4 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
   );
 };
 export default UserForm;
+

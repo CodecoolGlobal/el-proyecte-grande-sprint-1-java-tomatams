@@ -2,12 +2,10 @@ package com.codecool.elproyectegrandesprint.javatomatams.controller;
 
 import com.codecool.elproyectegrandesprint.javatomatams.model.LogInDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewClientDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.model.UpdateClientDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -25,9 +23,10 @@ public class ClientController {
         clientService.addClient(newClientDTO);
     }
 
-/*    @PostMapping("/login")
-    public void logInClient(@RequestBody LogInDTO logInDTO) {
-        // TODO - write this endpoint
-    }*/
+    @PutMapping("/update")
+    public void editClient(@RequestBody UpdateClientDTO updateClientDTO){
+        clientService.updateClient(updateClientDTO);
+        System.out.println(updateClientDTO.toString());
+    }
 
 }

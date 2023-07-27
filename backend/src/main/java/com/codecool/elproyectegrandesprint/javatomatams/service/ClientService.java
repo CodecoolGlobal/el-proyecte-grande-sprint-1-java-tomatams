@@ -3,6 +3,7 @@ package com.codecool.elproyectegrandesprint.javatomatams.service;
 import com.codecool.elproyectegrandesprint.javatomatams.model.Client;
 import com.codecool.elproyectegrandesprint.javatomatams.model.NewClientDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.model.Role;
+import com.codecool.elproyectegrandesprint.javatomatams.model.UpdateClientDTO;
 import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,4 +36,6 @@ public class ClientService {
                 .build();
     }
 
+    public void updateClient(UpdateClientDTO updateClientDTO) {
+    }
 }

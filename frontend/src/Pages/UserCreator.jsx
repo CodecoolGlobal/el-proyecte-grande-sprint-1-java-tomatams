@@ -1,6 +1,6 @@
-import { useState} from "react";
-import { useNavigate} from "react-router-dom";
-import UserForm from "../Components/User/UserRegistrationForm";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import UserRegistrationForm from "../Components/User/UserRegistrationForm";
 
 const createUser = (user) => {
   return fetch("/users/add", {
@@ -20,22 +20,22 @@ const UserCreator = () => {
   const handleCreateUser = (user) => {
     setLoading(true);
     createUser(user)
-    .then(() => {
-      navigate("/");
-    })
-    .catch((err) => {
-      throw(err);
-    })
-    .finally(()=> {
-      setLoading(false);
-    })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        throw (err);
+      })
+      .finally(() => {
+        setLoading(false);
+      })
   };
 
   return (
-    <UserForm
-    onCancel={()=> navigate("/")}
-    disabled={loading}
-    onSave= {handleCreateUser}/>
+    <UserRegistrationForm
+      onCancel={() => navigate("/")}
+      disabled={loading}
+      onSave={handleCreateUser} />
   )
 }
 
