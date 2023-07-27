@@ -3,6 +3,7 @@ package com.codecool.elproyectegrandesprint.javatomatams.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.codecool.elproyectegrandesprint.javatomatams.model.LogInDTO;
+import com.codecool.elproyectegrandesprint.javatomatams.repositoryDAO.ClientRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,10 +25,13 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
     private final String SECRET_KEY = "LOPOTTLACI";
 
     private final AuthenticationManager customAuthenticationManager;
+    private final ClientRepository clientRepository;
 
-    public MyUserNamePasswordAuthenticationFilter(AuthenticationManager customAuthenticationManager) {
+    public MyUserNamePasswordAuthenticationFilter(AuthenticationManager customAuthenticationManager,
+                                                  ClientRepository clientRepository) {
         super(customAuthenticationManager);
         this.customAuthenticationManager = customAuthenticationManager;
+        this.clientRepository = clientRepository;
     }
 
     @Override
@@ -56,25 +60,26 @@ public class MyUserNamePasswordAuthenticationFilter extends UsernamePasswordAuth
                                             Authentication authResult) throws IOException, ServletException {
 
         String name = String.valueOf(authResult.getPrincipal());
-
+        String email = clientRepository.findClientByName(name).getEmail();
         Collection<? extends GrantedAuthority> authorities = authResult.getAuthorities();
         List<String> roles = new ArrayList<>(authorities.size());
         for (GrantedAuthority authority : authorities) {
             roles.add(authority.getAuthority());
         }
 
-        String accessToken = getJwtToken(name, roles);
+        String accessToken = getJwtToken(name, roles, email);
 
         response.setHeader("Authorization", "Bearer " + accessToken);
     }
 
-    private String getJwtToken(String name, List<String> roles) {
+    private String getJwtToken(String name, List<String> roles, String email) {
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY.getBytes());
 
         String accessToken = JWT.create()
                 .withSubject(name)
                 .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
                 .withClaim("role", roles)
+                .withClaim("email", email)
                 .sign(algorithm);
         return accessToken;
     }

@@ -9,10 +9,13 @@ const Layout = () => {
 
   useEffect(() => {
     setToken(localStorage.getItem("token"))
-    console.log("TOKEN ", token);
+    console.log("TOKEN LAYOUT ", token);
   }, [token])
 
-  
+
+  const handleLogout = () => {
+    console.log("logged out");
+  }
 
   return (
     <div className="Layout">

@@ -11,13 +11,13 @@ const NavigationBar = ({ active, handleClick }) => {
           <Link to="/create">Add new recipe</Link>
         </li>
         <li>
-          <a href="#">About us</a>
-        </li>
-        <li>
           <Link to="/register">Sign Up</Link>
         </li>
         <li>
           <Link to="/login">Log In</Link>
+        </li>
+        <li>
+          <a href="/profile">Profile</a>
         </li>
         <li>
           <a href="#">Contact</a>
