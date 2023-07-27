@@ -77,7 +77,7 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
             id="name"
             name="name"
             defaultValue={user ? user.name : null}
-            disabled={user}
+            readonly={user}
           ></input>
         </div>
 
