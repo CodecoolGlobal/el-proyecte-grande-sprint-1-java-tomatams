@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../Logo.png";
+import Logo from "../images/Logo.png";
 import NavigationBar from "./NavigationBar";
 import SearchBar from "./SearchBar";
+import ProfileNavBar from "./SignOut/ProfileNavBar";
 
-const Header = () => {
+const Header = ({token, logout}) => {
   const [active, setActive] = useState("inactive");
   const [open, setOpen] = useState("closed");
   const [show, setShow] = useState("closed");
@@ -20,6 +21,7 @@ const Header = () => {
   };
   return (
     <header>
+      {token && <ProfileNavBar token={token} />}
       <Link to={`/`} style={{ textDecoration: 'none' }}>
         <div className="header-container">
           <img id="logo-img" src={Logo} alt="website-logo" width="300" />
