@@ -1,7 +1,10 @@
-
-
+import { useEffect, useState } from "react";
 
 const UserForm = ({ user, onSave, disabled, onCancel }) => {
+  const [passWord, setPassWord] = useState("");
+  const [isValidPassword, setIsValidPassword] = useState(null);
+  const [displayMessage, setDisplayMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -13,10 +16,54 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
       acc[k] = v;
       return acc;
     }, {});
-
-
-    return onSave(user);
+    if(isValidPassword){
+      return onSave(user);
+    } else {
+      setErrorMessage("The passwords do not match, please correct them")
+    }
   };
+
+  const validatePassWord = (e) =>{
+    const newPassWord = e.target.value;
+
+    const hasUppercase = /[A-Z]/.test(newPassWord);
+    const hasLowercase = /[a-z]/.test(newPassWord);
+    const hasNumber = /[0-9]/.test(newPassWord);
+    const newPassWordLength = newPassWord.length >= 5;
+
+    if (!newPassWordLength) {
+      setErrorMessage("The password is not long enough!");
+      setIsValidPassword(false);
+    } else if (!hasUppercase) {
+      setErrorMessage("The password has contain one upperCase letter!");
+      setIsValidPassword(false);
+    } else if (!hasLowercase){
+      setErrorMessage("The password has contain one lowerCase letter!");
+      setIsValidPassword(false);
+    }else if (!hasNumber){
+      setErrorMessage("The password has contain one number!");
+      setIsValidPassword(false);    
+    } else {
+      setErrorMessage("");
+      setIsValidPassword(true);
+    }
+    setPassWord(newPassWord)
+  }
+
+  const validateConfirmPassWord = (e) =>{
+      let confPassword = e.target.value;
+      if(passWord === confPassword){
+        setErrorMessage("")
+        setIsValidPassword(true);
+      } else {
+        setErrorMessage("passwords do not match")
+        setIsValidPassword(false);
+      }
+  }
+
+  useEffect(() => {
+    setDisplayMessage(errorMessage)
+  }, [isValidPassword, errorMessage]);
 
   return (<main>
 
@@ -35,11 +82,33 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
         <div className="form-fields">
           <label htmlFor="password">Password</label>
           <input
-            type="password"
+            type="text"
             id="password"
             name="password"
+            onChange={validatePassWord}
             defaultValue={user ? user.password : null}
           ></input>
+        </div>
+
+        <div className="form-fields">
+          <label htmlFor="confirm_password">Confirm password</label>
+          <input
+            type="text"
+            id="conf_password"
+            name="conf_password"
+            onChange={validateConfirmPassWord}
+            defaultValue={user ? user.conf_password : null}
+          ></input>
+        </div>
+
+        <div>
+          <p>Password Requirements: </p>
+          <ul>
+            <li>password length needs to be at least 5 characters.</li>
+            <li>one uppercase letter</li>
+            <li>one lowercase letter</li>
+            <li>and one number</li>
+          </ul>
         </div>
 
         <div className="form-fields">
@@ -47,6 +116,10 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
           <input type="email" id="email" name="email">
             {user ? user.email : null}
           </input>
+        </div>
+
+        <div>
+          <p>{displayMessage}</p>
         </div>
 
         <div className="form-field-buttons">
