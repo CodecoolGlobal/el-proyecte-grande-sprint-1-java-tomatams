@@ -12,14 +12,10 @@ const Layout = () => {
     console.log("TOKEN LAYOUT ", token);
   }, [token])
 
-  const handleLogout = () => {
-    console.log("logged out");
-  }
-
   return (
     <div className="Layout">
       <TokenContext.Provider value={{ token, setToken }}>
-        <Header token={token} logout={handleLogout} />
+        <Header />
         <Outlet />
       </TokenContext.Provider>
     </div>

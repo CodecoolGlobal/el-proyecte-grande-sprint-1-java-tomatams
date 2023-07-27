@@ -5,7 +5,7 @@ import NavigationBar from "./NavigationBar";
 import SearchBar from "./SearchBar";
 import ProfileNavBar from "./SignOut/ProfileNavBar";
 
-const Header = ({ token, logout }) => {
+const Header = () => {
   const [active, setActive] = useState("inactive");
   const [open, setOpen] = useState("closed");
   const [show, setShow] = useState("closed");
@@ -21,7 +21,7 @@ const Header = ({ token, logout }) => {
   };
   return (
     <header>
-      <ProfileNavBar logout={logout} />
+      <ProfileNavBar />
       <Link to={`/`} style={{ textDecoration: 'none' }}>
         <div className="header-container">
           <img id="logo-img" src={Logo} alt="website-logo" width="300" />
