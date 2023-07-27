@@ -1,3 +1,3 @@
 package com.codecool.elproyectegrandesprint.javatomatams.model;
 
-public record NewClientDTO (String name, String password, String email) {}
+public record UpdateClientDTO(String name, String oldPassword, String password, String email) {}
