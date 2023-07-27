@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { TokenContext } from "../Pages/Layout"; // always copy where token is used
+import { useContext } from "react";
+
 
 const NavigationBar = ({ active, handleClick }) => {
+  const { token } = useContext(TokenContext);
   return (
     <nav>
       <div className={`navigation ${active}`} onClick={handleClick}>
@@ -10,15 +14,15 @@ const NavigationBar = ({ active, handleClick }) => {
         <li>
           <Link to="/create">Add new recipe</Link>
         </li>
-        <li>
+        {!token && <li>
           <Link to="/register">Sign Up</Link>
-        </li>
-        <li>
+        </li>}
+        {!token && <li>
           <Link to="/login">Log In</Link>
-        </li>
-        <li>
+        </li>}
+        {token && <li>
           <a href="/profile">Profile</a>
-        </li>
+        </li>}
         <li>
           <a href="#">Contact</a>
         </li>

@@ -31,8 +31,8 @@ const ProfileNavBar = () => {
     return (
         <div className="profile">
             <h4>Hello {decodedToken.sub}!</h4>
-            <Link to={"/profile"}><h4>View Profile</h4></Link>
-            <button onClick={handleLogout}>Log out <img src={Logout} alt="Logout" width="15" height="15" /></button>
+            {token && <Link to={"/profile"}><h4>View Profile</h4></Link>}
+            {token && <button onClick={handleLogout}>Log out <img src={Logout} alt="Logout" width="15" height="15" /></button>}
         </div>
     )
 };
