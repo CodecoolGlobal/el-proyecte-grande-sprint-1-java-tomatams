@@ -1,55 +1,188 @@
-## TANTALIZING TREATS
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
 
-Our Team wanted to create a recipe sharing site where you can share your recipes to discuss about experiences, like Street Kitchen ( _https://streetkitchen.hu_ ). We wanted to make a webpage which has a nice UI and easy to use without ads. It's about practiceing Java Spring and React.
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
-### Description
 
-The project is about creating a recipe sharing site. As a guest you can look at recipe’s which was made by other users. After registration you can add your own recipe’s. 
-You can search after a specific recipe or ingredients.
-If you have Docker application you can try out also.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams">
+    <img src="../frontend/src/images/Logo.png" alt="Logo" width="220" height="180">
+  </a>
+
+<h3 align="center">:blueberries: Tantalizing Treats :kiwi_fruit:</h3>
+
+  <p align="center">
+    Our Team created a recipe sharing site where you can share your recipes, like Street Kitchen https://streetkitchen.hu. We wanted to make a webpage which has a nice UI and easy to use without ads. It's about practicing Java Spring and React.
+    <br />
+    <a href="https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams"><strong>Explore the docs :arrow_right:</strong></a>
+    <br />
+    <br />
+    <a href="https://docs.google.com/presentation/d/1KSAMPQHO-BbCdZFLKzleiZd_f-0By3VmAB_Xgd5-VPE/edit?usp=sharing">View Demo :computer:</a>
+    ·
+    <a href="https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams/issues">Report Bug :lady_beetle:</a>
+    ·
+    <a href="https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams/issues">Request Feature :memo:</a>
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributing">Contributing</a>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+The project is about creating a recipe sharing site. As a guest you can look at recipes which was made by other users. After registration, you can add your own recipes.
+You can search for a specific recipe or ingredients.
+
+<p align="right">(<a href="#readme-top">:top:</a>)</p>
+
+
+
+### Built With
+
+* [![React][React.js]][React-url]
+* [![Spring][Spring.img]][Spring-url]
+* [![SpringBoot][SpringBoot.img]][SpringBoot-url]
+* [![Postgres][Postgres.img]][Postgres-url]
+
+<p align="right">(<a href="#readme-top">:top:</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+Please see the core dependencies and installation steps below:
 
 ### Prerequisites
+1. JAVA
+2. MAVEN
+3. INTELLIJ
+4. POSTGRES SQL
+5. Docker(Optional)
 
-To run this project, you need to have the following:
 
-Backend side:
+### Installation
+1. Clone the repo
+   ```sh
+   git clone git@github.com:CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams.git
+   ```
+2. Install JAVA version 17 or higher
 
-1.	You need to have an IDE, like IntelliJ IDEA or Eclipse.
+3. Install Apache Maven or IDE with built-in Maven support
+4. Install an integrated development environment(IDE) - IntelliJ IDEA
+5. Install PostgreSQL
+6. Create a database in PostgreSQL named „springrolls”
+7. Open the project in IntelliJ from the pom.xml file :open_file_folder:
+8. Set the database name, username and password as environment variables as follows: <br>
+   :white_check_mark: DATABASE_NAME=_your database name_<br>
+   :white_check_mark: DATABASE_USERNAME=_your username_<br>
+   :white_check_mark: DATABASE_PASSWORD=_your password_<br>
+9. Run the application by the "Run" button in the top right corner or with Shift + F10 shortcut
+10. This will start the project, and you can reach in your browser, on the following URL: http://localhost:8080/
+11. If you want to run the application dockerized, please install Docker and Docker Desktop.
+12. Open a terminal and navigate to the directory – project directory - /backend/ - containing the Docker compose file. 
+13. Use the `docker-compose up` command to run the images. After compose, you can reach the side on http://localhost:8080/
 
-Frontend side:
 
-2.	Node Package Manager (npm) – if you don’t have it, run the following command in your terminal: _npm i_
-3.	optional – Visual Studio Code  - you can open the project in this, but not mandatory to have it
+<p align="right">(<a href="#readme-top">:top:</a>)</p>
 
-for Docker:
 
-4.	have docker.
 
-### Usage
+<!-- USAGE EXAMPLES -->
+## Usage
 
-Follow the steps below to use this project:
+In this project, you can _browse in recipes_ and view them in details. There are some _filtering_ options for
+the recipes, as well as a _search bar_ to find recipes by name. You can _create profile_ for yourself and _log in_
+to create your own recipes. As an admin you can delete the recipes.
 
-1.	Clone the repository to your local machine.
+<p align="right">(<a href="#readme-top">:top:</a>)</p>
 
-Backend side:
 
-2.	Go to /backend/ folder. You can run a Spring Boot application from your IDE as a simple Java application (ElProyecteGrandeSprint1JavaTomatamsApplication.java or Main class),
-Frontend side:
+<!-- CONTRIBUTING -->
+## Contributing
+This project was made by four Codecool students: Anna Cseke, Gergely Cselőtei, Péter Jung, Tamás Toma.
 
-3.	In your terminal, move into the project’s folder /frontend/ _OR_ open the project in VsCode
-4.	Run the following command in the terminal : _npm start_
-5.	This will start the project, and you can reach in your browser, ont he following URL: _http://localhost:3000/_
+<!-- CONTACT -->
+## Contact
 
-Run Docker:
+:woman_technologist: Anna Cseke - :email: anna.cseke@gmail.com [![LinkedIn][linkedin-shield]][linkedin-Anna]<br>
+:man_technologist: Gergely Cselőtei - :email: cseloteigergely@gmail.com [![LinkedIn][linkedin-shield]][linkedin-Gergely]<br>
+:man_technologist: Péter Jung - :email: jung.peter24@gmail.com [![LinkedIn][linkedin-shield]][linkedin-Peter]<br>
+:man_technologist: Tamás Toma - :email: tomatams@gmail.com [![LinkedIn][linkedin-shield]][linkedin-Tamás]<br>
 
-6.	Open a terminal and navigate to the directory – project directory - /backend/ - containing the Docker compose file. Use the _docker-compose up_ command tor un the images. After compose, you can reach the side on _http://localhost:8080/_
+Project Link: [https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams](https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams)
 
-Here you can try the features of the project.
+<p align="right">(<a href="#readme-top">:top:</a>)</p>
 
-### Contributing
 
-This porject was made by four Codecool students: Cseke Anna, Cselőtei Gergely, Jung Péter and Toma Tamás
 
-### Contact
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams?style=for-the-badge
+[contributors-url]: https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams?style=for-the-badge
+[forks-url]: https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams/forks
+[stars-shield]: https://img.shields.io/github/stars/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams?style=for-the-badge
+[stars-url]: https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams/stargazers
+[issues-shield]: https://img.shields.io/github/issues/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams?style=for-the-badge
+[issues-url]: https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams/issues
 
-If you have any questions or want to discuss this project, you can reach us at anna.cseke@gmail.com, peter.jung.codecool@gmail.com, cseloteigergely@gmail.com or tomatams@gmail.com .
+[license-shield]: https://img.shields.io/github/license/placi0325/Stackoverflow-TW5.svg?style=for-the-badge
+[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
+[linkedin-Peter]: https://www.linkedin.com/in/peter-jung-66833213b/
+[linkedin-Anna]: https://www.linkedin.com/in/anna-cseke-847b1963/
+[linkedin-Tamás]: https://www.linkedin.com/in/tomatams/
+[linkedin-Gergely]: https://www.linkedin.com/in/gergely-csel%C5%91tei-4469a127a/
+[product-screenshot]: images/screenshot.png
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[JavaScript.img]:     https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
+[JavaScript-url]: https://www.javascript.com/
+[Spring.img]: https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white
+[Spring-url]: https://spring.io/
+[Postgres.img]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
+[Postgres-url]: https://www.postgresql.org/
+[SpringBoot.img]: https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot
+[SpringBoot-url]: https://spring.io/projects/spring-boot
+[Docker.img]: https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white
+[Docker-url]: https://www.docker.com/
