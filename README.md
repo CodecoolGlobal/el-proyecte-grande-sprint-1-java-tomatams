@@ -19,7 +19,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams">
-    <img src="../frontend/src/images/Logo.png" alt="Logo" width="220" height="180">
+    <img src="frontend/src/images/Logo.png" alt="Logo" width="220" height="180">
   </a>
 
 <h3 align="center">:blueberries: Tantalizing Treats :kiwi_fruit:</h3>
