@@ -144,10 +144,10 @@ This project was made by four Codecool students: Anna Cseke, Gergely Cselőtei, 
 <!-- CONTACT -->
 ## Contact
 
-:woman_technologist: Anna Cseke - :email: anna.cseke@gmail.com [![LinkedIn][linkedin-shield]][linkedin-Anna]<br>
-:man_technologist: Gergely Cselőtei - :email: cseloteigergely@gmail.com [![LinkedIn][linkedin-shield]][linkedin-Gergely]<br>
-:man_technologist: Péter Jung - :email: jung.peter24@gmail.com [![LinkedIn][linkedin-shield]][linkedin-Peter]<br>
-:man_technologist: Tamás Toma - :email: tomatams@gmail.com [![LinkedIn][linkedin-shield]][linkedin-Tamás]<br>
+:woman_technologist: Anna Cseke - :email: anna.cseke[at]gmail[dot]com [![LinkedIn][linkedin-shield]][linkedin-Anna]<br>
+:man_technologist: Gergely Cselőtei - :email: cseloteigergely[at]gmail[dot]com [![LinkedIn][linkedin-shield]][linkedin-Gergely]<br>
+:man_technologist: Péter Jung - :email: jung.peter24[at]gmail[dot]com [![LinkedIn][linkedin-shield]][linkedin-Peter]<br>
+:man_technologist: Tamás Toma - :email: tomatams[at]gmail[dot]com [![LinkedIn][linkedin-shield]][linkedin-Tamás]<br>
 
 Project Link: [https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams](https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams)
 
