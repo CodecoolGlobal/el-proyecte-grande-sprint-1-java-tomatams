@@ -169,7 +169,7 @@ Project Link: [https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-jav
 [license-shield]: https://img.shields.io/github/license/placi0325/Stackoverflow-TW5.svg?style=for-the-badge
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
-[linkedin-Peter]: https://www.linkedin.com/in/peter-jung-66833213b/
+[linkedin-Peter]: https://www.linkedin.com/in/pjung-dev
 [linkedin-Anna]: https://www.linkedin.com/in/anna-cseke-847b1963/
 [linkedin-Tamás]: https://www.linkedin.com/in/tomatams/
 [linkedin-Gergely]: https://www.linkedin.com/in/gergely-csel%C5%91tei-4469a127a/
