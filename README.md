@@ -122,23 +122,25 @@ Please see the core dependencies and installation steps below:
 ##### Backend Side
 5. Run the application by the "Run" button in the top right corner or with Shift + F10 shortcut in INTELLIJ IDEA, or You can run a Spring Boot application from your IDE as a simple Java application (ElProyecteGrandeSprint1JavaTomatamsApplication.java),
 6. This will start the project backend side,
-   
+
+
+#### In Terminal
 ##### Frontend Side
-7.	In your terminal, move into the project’s folder /frontend/,
+7.	Move into the project’s folder /frontend/,
 8.	Run the following command in the terminal :
    ```sh
    npm start
    ```
 9.	This will start the project frontend side, and you can reach in your browser, ont he following URL: _http://localhost:3000/_
 
-#### Dockerization
-
-10. Open a terminal and navigate to the directory – project directory - /backend/ - containing the Docker compose file. 
-11. Run the following command in the terminal :
+#### Dockerization (Optional)
+10. Shut down the backend and fronted side, if you started,
+11. Open a terminal and navigate to the directory – project directory - /backend/ - containing the Docker compose file. 
+12. Run the following command in the terminal :
    ```sh
    docker-compose up
    ```
-12. After compose, you can reach the side on _http://localhost:8080/_
+13. After compose, you can reach the side on _http://localhost:8080/_
 
     
 <p align="right">(<a href="#readme-top">:top:</a>)</p>
