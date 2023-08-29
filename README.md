@@ -30,7 +30,6 @@
     <a href="https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams"><strong>Explore the docs :arrow_right:</strong></a>
     <br />
     <br />
-    <a href="https://docs.google.com/presentation/d/1KSAMPQHO-BbCdZFLKzleiZd_f-0By3VmAB_Xgd5-VPE/edit?usp=sharing">View Demo :computer:</a>
     ·
     <a href="https://github.com/CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams/issues">Report Bug :lady_beetle:</a>
     ·
@@ -38,7 +37,12 @@
   </p>
 </div>
 
-
+1. week project demo: <a href="https://docs.google.com/presentation/d/19x2YyDQeWyK21higDhK7i5lahrSMuKDAOC6bCFbdCSk/edit?usp=sharing">View Demo :computer:</a>
+2. week project demo: <a href="https://docs.google.com/presentation/d/1X9CGGA9D7I62SVOtY8P8FMMwabrNqM3qqyMS1oeyk_A/edit?usp=sharing">View Demo :computer:</a>
+3. week project demo: <a href="https://docs.google.com/presentation/d/1sGaNMuaBGTALJOXPdZwR2xtyUVuCvesVq86oAZNIgdA/edit?usp=sharing">View Demo :computer:</a>
+4. week project demo: <a href="https://docs.google.com/presentation/d/1KSAMPQHO-BbCdZFLKzleiZd_f-0By3VmAB_Xgd5-VPE/edit?usp=sharing">View Demo :computer:</a>
+   <br />
+   <br />
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -75,7 +79,6 @@ You can search for a specific recipe or ingredients.
 <p align="right">(<a href="#readme-top">:top:</a>)</p>
 
 
-
 ### Built With
 
 * [![React][React.js]][React-url]
@@ -93,36 +96,51 @@ You can search for a specific recipe or ingredients.
 Please see the core dependencies and installation steps below:
 
 ### Prerequisites
-1. JAVA
+1. JAVA 17
 2. MAVEN
-3. INTELLIJ
-4. POSTGRES SQL
-5. Docker(Optional)
-
+3. POSTGRES SQL
+4. IDE - for backend, for example INTELLIJ IDEA
+6. Docker(Optional)
 
 ### Installation
 1. Clone the repo
    ```sh
    git clone git@github.com:CodecoolGlobal/el-proyecte-grande-sprint-1-java-tomatams.git
    ```
-2. Install JAVA version 17 or higher
-
-3. Install Apache Maven or IDE with built-in Maven support
-4. Install an integrated development environment(IDE) - IntelliJ IDEA
-5. Install PostgreSQL
-6. Create a database in PostgreSQL named „springrolls”
-7. Open the project in IntelliJ from the pom.xml file :open_file_folder:
-8. Set the database name, username and password as environment variables as follows: <br>
-   :white_check_mark: DATABASE_NAME=_your database name_<br>
+#### In PostgreSQL
+2. Create a database in PostgreSQL named :
+      ```sh
+   springrolls
+   ```
+#### In IDE
+3. Open the project in IDE from the pom.xml file :open_file_folder:
+4. in backend/src/main/resources/application.properties file set the database name, username and password as environment variables as follows: <br>
+   :white_check_mark: DATABASE_NAME=_springrolls_<br>
    :white_check_mark: DATABASE_USERNAME=_your username_<br>
    :white_check_mark: DATABASE_PASSWORD=_your password_<br>
-9. Run the application by the "Run" button in the top right corner or with Shift + F10 shortcut
-10. This will start the project, and you can reach in your browser, on the following URL: http://localhost:8080/
-11. If you want to run the application dockerized, please install Docker and Docker Desktop.
-12. Open a terminal and navigate to the directory – project directory - /backend/ - containing the Docker compose file. 
-13. Use the `docker-compose up` command to run the images. After compose, you can reach the side on http://localhost:8080/
+   
+##### Backend Side
+5. Run the application by the "Run" button in the top right corner or with Shift + F10 shortcut in INTELLIJ IDEA, or You can run a Spring Boot application from your IDE as a simple Java application (ElProyecteGrandeSprint1JavaTomatamsApplication.java),
+6. This will start the project backend side,
+   
+##### Frontend Side
+7.	In your terminal, move into the project’s folder /frontend/,
+8.	Run the following command in the terminal :
+   ```sh
+   npm start
+   ```
+9.	This will start the project frontend side, and you can reach in your browser, ont he following URL: _http://localhost:3000/_
 
+#### Dockerization
 
+10. Open a terminal and navigate to the directory – project directory - /backend/ - containing the Docker compose file. 
+11. Run the following command in the terminal :
+   ```sh
+   docker-compose up
+   ```
+12. After compose, you can reach the side on _http://localhost:8080/_
+
+    
 <p align="right">(<a href="#readme-top">:top:</a>)</p>
 
 
