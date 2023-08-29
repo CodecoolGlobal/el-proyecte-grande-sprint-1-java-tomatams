@@ -131,7 +131,7 @@ Please see the core dependencies and installation steps below:
    ```sh
    npm start
    ```
-9.	This will start the project frontend side, and you can reach in your browser, ont he following URL: _http://localhost:3000/_
+9.	This will start the project frontend side, and you can reach in your browser, on the following URL: _http://localhost:3000/_
 
 #### Dockerization (Optional)
 10. Shut down the backend and fronted side, if you started,
