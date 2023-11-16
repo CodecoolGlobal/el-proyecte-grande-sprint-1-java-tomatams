@@ -15,6 +15,7 @@ public class ClientController {
     @Autowired
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
+        clientService.addAdmin();
     }
 
 
