@@ -71,7 +71,7 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
 
     <form onSubmit={onSubmit}>
       <div className="form-container">
-        <div className="form-fields">
+        <div className="form-fields sign-up">
           <label htmlFor="name">Username</label>
           <input
             id="name"
@@ -81,7 +81,7 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
           ></input>
         </div>
 
-        {user && <div className="form-fields">
+        {user && <div className="form-fields sign-up">
           <label htmlFor="old_password">Old password</label>
           <input
             type="password"
@@ -90,7 +90,7 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
           ></input>
         </div>}
 
-        <div className="form-fields">
+        <div className="form-fields sign-up">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -100,7 +100,7 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
           ></input>
         </div>
 
-        <div className="form-fields">
+        <div className="form-fields sign-up">
           <label htmlFor="confirm_password">Confirm password</label>
           <input
             type="password"
@@ -120,7 +120,7 @@ const UserForm = ({ user, onSave, disabled, onCancel }) => {
           </ul>
         </div>
 
-        <div className="form-fields">
+        <div className="form-fields sign-up">
           <label htmlFor="email">Email</label>
           <input
             type="email"
