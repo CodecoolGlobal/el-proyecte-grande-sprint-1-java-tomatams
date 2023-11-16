@@ -26,6 +26,10 @@ public class ClientService {
         clientRepository.save(buildClient(newClientDTO));
     }
 
+    public void addAdmin() {
+        clientRepository.save(adminBuilder());
+    }
+
     private Client buildClient(NewClientDTO newClientDTO) {
         return Client.builder()
                 .ID(UUID.randomUUID())
@@ -33,6 +37,16 @@ public class ClientService {
                 .password(passwordEncoder.encode(newClientDTO.password()))
                 .email(newClientDTO.email())
                 .role(Role.USER)
+                .build();
+    }
+
+    private Client adminBuilder() {
+        return Client.builder()
+                .ID(UUID.randomUUID())
+                .name("admin")
+                .password(passwordEncoder.encode("12345"))
+                .email("admin@admin.hu")
+                .role(Role.ADMIN)
                 .build();
     }
 

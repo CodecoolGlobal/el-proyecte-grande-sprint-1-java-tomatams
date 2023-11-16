@@ -221,6 +221,12 @@ main {
   padding: 30px;
   border: 1px solid black;
   border-radius: 5px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  transition: all .2s ease-in-out;
+}
+
+.recipe-box:hover {
+  transform: scale(0.9);
 }
 
 
@@ -256,6 +262,10 @@ main {
   flex-direction: column;
 }
 
+.sign-up {
+  width: 450px;
+}
+
 .form-field-buttons {
   width: 100%;
   display: flex;
@@ -272,7 +282,7 @@ main {
 .search-box {
   position: absolute;
   top: 42vh;
-  left: 49.5vw;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #2f3640;
   height: 40px;
@@ -298,8 +308,8 @@ main {
   width: 860px;
   height: 536px;
   border-radius: 0px 0px 40px 40px;
-  transition: all 0.5s ease-in-out;
-  transition-delay: 0.1s;
+  transition: 0.5s ease-in-out;
+  transition-delay: 0.3s;
   visibility: visible;
   margin-bottom: -540px;
   border: #e84118 solid 2px;
@@ -330,6 +340,10 @@ main {
   width: 100%;
   top: 43%;
   left: 90%;
+}
+
+.search-card.shown > .search-cooking-time {
+  transition-delay: 0.3s;
 }
 
 .search-btn {
